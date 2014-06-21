@@ -14,15 +14,19 @@ define(["globals"], function(globals) {
 
         //call this in update to handle game.phaser input
         public.update = function(){
-            if (cursors.left.isDown){
-                player.walk(globals.direction.left);
-            }
-            if (cursors.right.isDown){
-                player.walk(globals.direction.right);
-            }
+
             if (cursors.up.isDown){
                 player.jump();
             }
+            if (cursors.left.isDown){
+                player.walk(globals.direction.left);
+            }
+            else if (cursors.right.isDown){
+                player.walk(globals.direction.right);
+            }
+            else player.walk(globals.direction.stationary);
+
+
         };
 
         game.every(function() {
