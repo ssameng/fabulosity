@@ -26,7 +26,7 @@ define(["globals"], function(globals) {
         };
 
         game.every(function() {
-            // private.input.update();
+            public.update();
         });
 
         return public;
