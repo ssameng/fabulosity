@@ -52,7 +52,7 @@ require([
         },
         update: function (game) {
             game.physics.arcade.collide(player, layers.collision);
-            
+
 
         },
         render: function (game) {
