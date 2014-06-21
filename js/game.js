@@ -1,8 +1,9 @@
 require([
     'player',
     '../lib/domReady',
-    'scene'
-], function(Player, domready, Scene) {
+    'scene',
+    'globals'
+], function(Player, domready, Scene, globals) {
     /*jslint sloppy:true, browser: true, devel: true, eqeq: true, vars: true, white: true*/
     /*global Phaser:true*/
 
@@ -53,6 +54,15 @@ require([
         update: function (game) {
             game.physics.arcade.collide(player, layers.collision);
 
+            if (cursors.left.isDown){
+                player.walk(globals.direction.left);
+            }
+            else if (cursors.right.isDown) {
+                player.walk(globals.direction.right);
+            }
+            else {
+                player.walk(globals.direction.stationary);
+            }
 
         },
         render: function (game) {
