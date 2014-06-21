@@ -7,7 +7,7 @@ define(['globals', 'game'], function(globals, game) {
         public.loadMap = function() {
 
         };
-    });
+    };
 
     Scene.preload = function() {
         // Load the area01 map and its tiles
