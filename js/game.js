@@ -4,7 +4,6 @@
 // Make this false to to turn off debugging (will run faster)
 var enableDebugging = true;
 
-
 var game = null;
 var map = null;
 var layers = null;
@@ -17,6 +16,50 @@ function setupCollisionLayer(game, map, layer) {
     layer.resizeWorld();
 }
 
+function Player(game) {
+        this.sprite = game.add.sprite(32*10, 32*4, 'gripe_run_right');
+        // rotate & flip around the center of the sprite
+        this.sprite.anchor.setTo(0.5, 0.5);
+        // width, height, translateX, translateY
+        game.physics.arcade.enableBody(this.sprite);
+        this.sprite.body.setSize(40, 56, 15, 24);
+        // Use all of the frames for the 'walk' animation
+        this.sprite.animations.add('walk');
+
+        this.sprite.body.gravity.y = 250;
+        this.sprite.body.bounce.y = 0;
+        this.sprite.body.linearDamping = 1;
+        this.sprite.body.collideWorldBounds = true;
+        game.camera.follow(this.sprite);
+}
+
+Player.prototype.animations = function() { return this.animations; };
+
+Player.prototype.killx = function() {
+    this.sprite.body.velocity.x = 0;
+};
+
+Player.prototype.handleCursor = function(cursor) {
+    if (cursors.up.isDown) {
+        if (this.sprite.body.onFloor()) {
+            this.sprite.body.velocity.y = -300;
+        }
+    }
+    if (cursors.left.isDown) {
+        this.animations().play('walk', 15, true);
+        this.sprite.body.velocity.x = -150;
+        // flip left
+        this.sprite.scale.x = -1;
+    } else if (cursors.right.isDown) {
+        this.animations().play('walk', 15, true);
+        this.sprite.body.velocity.x = 150;
+        // flip right
+        this.sprite.scale.x = 1;
+    } else {
+        this.animations().stop();
+    }
+};
+
 var gameState = {
     preload: function (game) {
         // Load the area01 map and its tiles
@@ -28,11 +71,11 @@ var gameState = {
     create: function (game) {
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#21C3FC';
-        
+
         // Create the map and associate the tiles with it
         map = game.add.tilemap('area01');
         map.addTilesetImage('area01_level_tiles', 'area01_level_tiles');
-        
+
         // Create all of the layers from the tileset,
         // but set visible to false if the name is 'collision'
         layers = {};
@@ -43,50 +86,20 @@ var gameState = {
             }
             layers[layerData.name] = layer;
         });
-        
-        player = game.add.sprite(32*10, 32*4, 'gripe_run_right');
-        // rotate & flip around the center of the sprite
-        player.anchor.setTo(0.5, 0.5);
-        // width, height, translateX, translateY
-        game.physics.arcade.enableBody(player);
-        player.body.setSize(40, 56, 15, 24);
-        // Use all of the frames for the 'walk' animation
-        player.animations.add('walk');
-        
-        player.body.gravity.y = 250;
-        player.body.bounce.y = 0;
-        player.body.linearDamping = 1;
-        player.body.collideWorldBounds = true;
-        game.camera.follow(player);
+
+        player = new Player(game);
+
 
         cursors = game.input.keyboard.createCursorKeys();
     },
     update: function (game) {
-        game.physics.arcade.collide(player, layers.collision);
-        player.body.velocity.x = 0;
-        if (cursors.up.isDown) {
-            if (player.body.onFloor()) {
-                player.body.velocity.y = -300;
-            }
-        }
-        if (cursors.left.isDown) {
-            player.animations.play('walk', 15, true);
-            player.body.velocity.x = -150;
-            // flip left
-            player.scale.x = -1;
-        } else if (cursors.right.isDown) {
-            player.animations.play('walk', 15, true);
-            player.body.velocity.x = 150;
-            // flip right
-            player.scale.x = 1;
-        } else {
-            player.animations.stop();
-        }
+        game.physics.arcade.collide(player.sprite, layers.collision);
+        player.killx();
     },
     render: function (game) {
         if (enableDebugging) {
             //game.debug.cameraInfo(game.camera, 16, 16);
-            game.debug.body(player);
+            game.debug.body(player.sprite);
         }
     }
 };
