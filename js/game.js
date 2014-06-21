@@ -3,8 +3,9 @@ define([
     '../lib/domReady',
     'scene',
     'globals',
-    'inputkeys'
-], function(Player, domready, Scene, globals, InputKeys) {
+    'inputkeys',
+    'flyingEnemy'
+], function(Player, domready, Scene, globals, InputKeys, FlyingEnemy) {
 
     var Game = {};
     Game.new = function() {
@@ -16,6 +17,7 @@ define([
                 layers: null,
                 cursors: null,
                 player: null,
+                enemies:[],
 
                 nextQueue: [],
                 everyQueue: [],
@@ -24,6 +26,7 @@ define([
         public.preload = function (game) {
             Player.preload(public);
             Scene.preload(public);
+            FlyingEnemy.preload(public);
         };
 
         public.create = function () {
@@ -40,6 +43,8 @@ define([
             public.every(function() {
                 private.map.collide(public, private.player);
             });
+
+            private.enemies[0] = FlyingEnemy.new(public)
         };
 
         public.update = function () {

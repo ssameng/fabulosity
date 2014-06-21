@@ -2,14 +2,18 @@ define(["Globals"],function(Globals){
 
     var Enemy = {};
 
-    Enemy.new=function(game)
+    var enemyGroup =
+
+    Enemy.new=function(globalGame)
     {
-        var public =game.add.sprite(32 * 10, 32, 'gripe_run_right');// game.add.sprite(64*4, 64, 'wheelie_right');
+        var game = globalGame.phaser;
+        var public =game.add.sprite(32 * 1, 32*4, 'wheelie_right');
 
         var private = {};
 
         public.anchor.setTo(0.5, 0.5);
-//        game.physics.arcade.enableBody(public);
+        //game.physics.arcade.enableBody(public);
+        //public.body.setSize(40, 56, 15, 24);
 
         private.hitPoints = 1;
 
@@ -21,14 +25,12 @@ define(["Globals"],function(Globals){
 
         public.die = function()
         {
-
+            public.kill();
         };
 
-        public.removeHitPoints = function(points)
-        {
-             private.hitPoints -= points;
-            if(private.hitPoints <=0 )
-            {
+        public.removeHitPoints = function(points) {
+            private.hitPoints -= points;
+            if (private.hitPoints <= 0) {
                 public.die();
             }
         };
@@ -36,6 +38,11 @@ define(["Globals"],function(Globals){
         public.shoot = function()
         {
 
+        };
+
+        public.update = function()
+        {
+            public.x+=1;
         };
 
         return public;
