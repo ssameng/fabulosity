@@ -1,58 +1,61 @@
-require([
+define([
     'player',
     '../lib/domReady',
     'scene',
     'globals'
 ], function(Player, domready, Scene, globals) {
-    /*jslint sloppy:true, browser: true, devel: true, eqeq: true, vars: true, white: true*/
-    /*global Phaser:true*/
 
-    // Make this false to to turn off debugging (will run faster)
-    var enableDebugging = true;
+    var Game = {};
+    Game.new = function() {
+        var public = {},
+            private = {
+                game: null,
+                scene: null,
+                map: null,
+                layers: null,
+                cursors: null,
+                player: null,
+            };
 
-    var game = null;
-    var scene = null;
-    var map = null;
-    var layers = null;
-    var cursors = null;
-    var player = null;
-
-    var gameState = {
-        preload: function (game) {
+        public.preload = function (game) {
             Player.preload(game);
             Scene.preload(game);
-        },
-        create: function (game) {
+        };
+
+        public.create = function (game) {
             game.physics.startSystem(Phaser.Physics.ARCADE);
 
             // Create player
-            player = Player.new(game);
+            private.player = Player.new(game);
             // Create scene manager
-            scene = Scene.new(game);
+            private.scene = Scene.new(game);
 
-            cursors = game.input.keyboard.createCursorKeys();
-            map = scene.loadMap('area01');
-        },
-        update: function (game) {
-            map.collide(game, player);
-        },
-        render: function (game) {
-            if (enableDebugging) {
-                //game.debug.cameraInfo(game.camera, 16, 16);
-                //game.debug.body(player);
-            }
-        }
+            private.cursors = game.input.keyboard.createCursorKeys();
+            private.map = private.scene.loadMap('area01');
+        };
+
+        public.update = function (game) {
+            private.map.collide(game, private.player);
+        };
+
+        public.render = function (game) {
+        };
+
+        public.start = function() {
+            var transparent = false;
+            var antialias = true;
+            new Phaser.Game(
+                640, 480,
+                Phaser.AUTO,
+                'game-div',
+                public,
+                transparent,
+                antialias
+            );
+        };
+
+        return public;
     };
 
-    domready(function() {
-        var transparent = false;
-        var antialias = true;
-        game = new Phaser.Game(
-            640, 480,
-            (enableDebugging ? Phaser.CANVAS : Phaser.AUTO),
-            'game-div',
-            gameState,
-            transparent,
-            antialias);
-    });
+    return Game;
 });
