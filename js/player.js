@@ -13,6 +13,9 @@ define(['globals'], function (globals) {
             currentSpeed: 0,
             acceleration: 20,
             jumpPower: 75,
+            jumpPackFull:.1,
+            jumpPack:.1,
+            jumped: false
         };
 
         // rotate & flip around the center of the sprite
@@ -28,20 +31,28 @@ define(['globals'], function (globals) {
         public.body.linearDamping = 1;
         public.body.collideWorldBounds = true;
 
+
+        public.update = function() {
+            if (private.motor.jumping){
+                console.log("HOLD");
+            }
+        };
+
         //call this during update based on cursors
         public.jump = function () {
             if (public.body.onFloor()) {
-                console.log("jumping");
-                //private.motor.jumping = true;
-                //private.motor.jumpPack = private.motor.jumpPackFull;
+                private.motor.jumping = true;
+                private.motor.jumpPack = private.motor.jumpPackFull;
             }
+            console.log(private.motor.jumpPack);
             if (private.motor.jumpPack > 0) {
+                console.log("GO UP");
                 private.motor.jumpPack -= game.phaser.time.physicsElapsed;
                 public.body.velocity.y -= private.motor.jumpPower;
                 console.log(private.motor.jumpPack);
             }
+            else private.motor.jumping = false;
         };
-
 
 
 
@@ -70,6 +81,7 @@ define(['globals'], function (globals) {
 
         return public;
     };
+
 
     Player.preload = function(game) {
         // Load the main player spritesheet
