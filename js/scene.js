@@ -15,7 +15,6 @@ define(['map'], function(Map) {
         var public  = {},
             private = {};
 
-
         private.setupCollisionLayer = function(game, map, layer) {
             layer.visible = false;
             map.setCollisionByExclusion([], true, layer);

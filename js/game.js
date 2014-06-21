@@ -15,7 +15,7 @@ require([
     var map = null;
     var layers = null;
     var cursors = null;
-
+    var player = null;
 
     var gameState = {
         preload: function (game) {
@@ -31,10 +31,10 @@ require([
             scene = Scene.new(game);
 
             cursors = game.input.keyboard.createCursorKeys();
+            map = scene.loadMap('area01');
         },
         update: function (game) {
-            map = scene.loadMap('area01');
-            map.collide(player, layers.collision);
+            map.collide(game, player);
         },
         render: function (game) {
             if (enableDebugging) {
