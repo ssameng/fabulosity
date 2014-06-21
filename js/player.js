@@ -1,6 +1,8 @@
-define(['globals'], function (globals) {
+define(['globals', 'projectile'], function (globals, Projectile) {
 
     var Player = {};
+
+    Player.projectileGroup;
 
     Player.new = function (game) {
         var public = game.phaser.add.sprite(32 * 10, 32 * 4, 'gripe_run_right');
@@ -12,11 +14,22 @@ define(['globals'], function (globals) {
             speed: 200,
             currentSpeed: 0,
             acceleration: 20,
+            direction: globals.direction.right,
             jumpPower: 75,
             jumpPackFull:.1,
             jumpPack:.1,
             jumped: false
         };
+
+        private.attack = {
+            projectileSprite: 'rainbowProjectile',
+            projectileTrail: 'rainbowTrail',
+            fireRate:.7,
+            fireRateTimer:.7,
+            canFire: false
+        };
+
+        private.scalex = public.scale.x;
 
         // rotate & flip around the center of the sprite
         public.anchor.setTo(0.5, 0.5);
@@ -59,6 +72,8 @@ define(['globals'], function (globals) {
                         private.motor.currentSpeed = -private.motor.speed;
                     }
                     public.animations.play('walk');
+                    public.scale.x = -private.scalex;
+                    private.direction = globals.direction.left;
                     break;
                 case globals.direction.right:
                     public.body.velocity.x += private.motor.acceleration;
@@ -66,7 +81,27 @@ define(['globals'], function (globals) {
                         private.motor.currentSpeed = private.motor.speed;
                     }
                     public.animations.play('walk');
+                    public.scale.x = private.scalex;
+                    private.direction = globals.direction.right;
                     break;
+            }
+        };
+
+        public.shoot = function(){
+            if (!private.attack.canFire) {
+                return;
+            }
+            var projectile = Projectile.new(game, Player.projectileGroup,
+                public.body.x, public.body.y, private.direction, private.attack.projectileSprite);
+            private.attack.fireRateTimer = private.attack.fireRate;
+            private.attack.canFire = false;
+            return projectile;
+        };
+
+        public.update = function(){
+            private.attack.fireRateTimer -= game.phaser.time.physicsElapsed;
+            if (private.attack.fireRateTimer <= 0){
+                private.attack.canFire = true;
             }
         };
 
@@ -78,6 +113,8 @@ define(['globals'], function (globals) {
         // Load the main player spritesheet
         game.load.spritesheet('gripe_run_right',
             '/data/img/sprite/gripe_run_right.png', 64, 64);
+
+        Player.projectileGroup = game.add.group();
     };
 
     return Player;

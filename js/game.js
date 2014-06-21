@@ -4,8 +4,9 @@ define([
     'scene',
     'globals',
     'inputkeys',
-    'flyingEnemy'
-], function(Player, domready, Scene, globals, InputKeys, FlyingEnemy) {
+    'flyingEnemy',
+    'projectile'
+], function(Player, domready, Scene, globals, InputKeys, FlyingEnemy, Projectile) {
 
     var Game = {};
     Game.new = function() {
@@ -27,6 +28,7 @@ define([
             Player.preload(public);
             Scene.preload(public);
             FlyingEnemy.preload(public);
+            Projectile.preload(public);
         };
 
         function checkEnemyCollisions()

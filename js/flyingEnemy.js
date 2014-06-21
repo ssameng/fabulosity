@@ -42,7 +42,8 @@ define(["globals"],function(Globals){
 
         public.collidedWithPlayer = function()
         {
-           public.die();
+            console.log("work!");
+            public.die();
         };
 
         public.update = function()
