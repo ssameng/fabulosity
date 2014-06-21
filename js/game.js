@@ -48,7 +48,7 @@ define([
             public.phaser.physics.startSystem(Phaser.Physics.ARCADE);
 
             private.scene = Scene.new(public);
-            private.map = private.scene.loadMap('area01');
+            private.map = private.scene.loadMap('house');//'area01');
             public.every(function() {
                 private.map.collide(public, private.player);
             });

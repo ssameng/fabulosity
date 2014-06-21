@@ -6,6 +6,12 @@ define(['map'], function(Map) {
                 file: '/data/map/area01.json',
                 image: '/data/img/map/area01_level_tiles.png'
             }
+        },
+        house: {
+            tiles: {
+                name: 'bedroom-roman',
+                file: '/data/map/house.json',
+                image: '/data/img/map/bedroom-roman.png'}
         }
     };
 
