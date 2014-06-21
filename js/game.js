@@ -32,19 +32,16 @@ define([
         public.create = function () {
             public.phaser.physics.startSystem(Phaser.Physics.ARCADE);
 
-            // Create player
-            private.player = Player.new(public);
-            // Create scene manager
             private.scene = Scene.new(public);
-
-            private.input = InputKeys.new(public, private.player);
             private.map = private.scene.loadMap('area01');
-
             public.every(function() {
                 private.map.collide(public, private.player);
             });
 
-            private.enemies[0] = FlyingEnemy.new(public)
+            private.enemies[0] = FlyingEnemy.new(public);
+            // Create player
+            private.player = Player.new(public);
+            private.input = InputKeys.new(public, private.player);
         };
 
         public.update = function () {

@@ -68,7 +68,6 @@ define(['globals'], function (globals) {
             }
         };
 
-
         return public;
     };
 
