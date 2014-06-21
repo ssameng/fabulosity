@@ -1,9 +1,9 @@
-define(["globals"], function (globals) {
+define(['globals'], function (globals) {
 
     var Player = {};
 
     Player.new = function (game) {
-        var public = game.add.sprite(32 * 10, 32 * 4, 'gripe_run_right');
+        var public = game.phaser.add.sprite(32 * 10, 32 * 4, 'gripe_run_right');
         var private = {};
 
         private.motor = {
@@ -16,7 +16,7 @@ define(["globals"], function (globals) {
         // rotate & flip around the center of the sprite
         public.anchor.setTo(0.5, 0.5);
         // width, height, translateX, translateY
-        game.physics.arcade.enableBody(public);
+        game.phaser.physics.arcade.enableBody(public);
         public.body.setSize(40, 56, 15, 24);
         // Use all of the frames for the 'walk' animation
         public.animations.add('walk');
@@ -26,16 +26,15 @@ define(["globals"], function (globals) {
         public.body.linearDamping = 1;
         public.body.collideWorldBounds = true;
 
-
         //call this during update based on cursors
         public.jump = function () {
             if (public.body.onFloor()) {
                 //motor.body.velocity.y = -300;
                 private.motor.jumping = true;
-                private.motor.jumpPack = motor.jumpPackFull;
+                private.motor.jumpPack = private.motor.jumpPackFull;
             }
             if (private.motor.jumpPack > 0) {
-                private.motor.jumpPack -= game.time.physicsElapsed;
+                private.motor.jumpPack -= game.phaser.time.physicsElapsed;
                 public.body.velocity.y -= private.motor.jumpPower;
                 console.log(private.motor.jumpPack);
             }
@@ -50,14 +49,16 @@ define(["globals"], function (globals) {
                     break;
                 case globals.direction.left:
                     public.body.velocity.x -= private.motor.acceleration;
-                    if (private.motor.currentSpeed < -private.motor.speed)
+                    if (private.motor.currentSpeed < -private.motor.speed) {
                         private.motor.currentSpeed = -private.motor.speed;
+                    }
                     public.animations.play('walk');
                     break;
                 case globals.direction.right:
                     public.body.velocity.x += private.motor.acceleration;
-                    if (private.motor.currentSpeed > private.motor.speed)
+                    if (private.motor.currentSpeed > private.motor.speed) {
                         private.motor.currentSpeed = private.motor.speed;
+                    }
                     public.animations.play('walk');
                     break;
             }

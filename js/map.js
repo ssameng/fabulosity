@@ -8,7 +8,7 @@ define(function() {
             };
 
         public.collide = function(game, player) {
-            game.physics.arcade.collide(player, private.layers.collision);
+            game.phaser.physics.arcade.collide(player, private.layers.collision);
         };
 
         return public;

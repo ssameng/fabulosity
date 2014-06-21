@@ -18,33 +18,33 @@ define([
             };
 
         public.preload = function (game) {
-            Player.preload(game);
-            Scene.preload(game);
+            Player.preload(public);
+            Scene.preload(public);
         };
 
-        public.create = function (game) {
-            game.physics.startSystem(Phaser.Physics.ARCADE);
+        public.create = function () {
+            public.phaser.physics.startSystem(Phaser.Physics.ARCADE);
 
             // Create player
-            private.player = Player.new(game);
+            private.player = Player.new(public);
             // Create scene manager
-            private.scene = Scene.new(game);
+            private.scene = Scene.new(public);
 
-            private.cursors = game.input.keyboard.createCursorKeys();
+            private.cursors = public.phaser.input.keyboard.createCursorKeys();
             private.map = private.scene.loadMap('area01');
         };
 
-        public.update = function (game) {
-            private.map.collide(game, private.player);
+        public.update = function () {
+            private.map.collide(public, private.player);
         };
 
-        public.render = function (game) {
+        public.render = function () {
         };
 
         public.start = function() {
             var transparent = false;
             var antialias = true;
-            new Phaser.Game(
+            public.phaser = new Phaser.Game(
                 640, 480,
                 Phaser.AUTO,
                 'game-div',

@@ -8,9 +8,6 @@ define([], function(){
         stationary : 5
     };
 
-
-
-
     globals.GRAVITY = 700;
     return globals;
 });
