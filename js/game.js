@@ -1,4 +1,4 @@
-require(['player', '../lib/domReady'], function(player, domready) {
+require(['player', '../lib/domReady'], function(Player, domready) {
     /*jslint sloppy:true, browser: true, devel: true, eqeq: true, vars: true, white: true*/
     /*global Phaser:true*/
 
@@ -9,7 +9,6 @@ require(['player', '../lib/domReady'], function(player, domready) {
     var map = null;
     var layers = null;
     var cursors = null;
-    var player = null;
 
     function setupCollisionLayer(game, map, layer) {
         layer.visible = false;
@@ -17,49 +16,6 @@ require(['player', '../lib/domReady'], function(player, domready) {
         layer.resizeWorld();
     }
 
-    function Player(game) {
-            this.sprite = game.add.sprite(32*10, 32*4, 'gripe_run_right');
-            // rotate & flip around the center of the sprite
-            this.sprite.anchor.setTo(0.5, 0.5);
-            // width, height, translateX, translateY
-            game.physics.arcade.enableBody(this.sprite);
-            this.sprite.body.setSize(40, 56, 15, 24);
-            // Use all of the frames for the 'walk' animation
-            this.sprite.animations.add('walk');
-
-            this.sprite.body.gravity.y = 250;
-            this.sprite.body.bounce.y = 0;
-            this.sprite.body.linearDamping = 1;
-            this.sprite.body.collideWorldBounds = true;
-            game.camera.follow(this.sprite);
-    }
-
-    Player.prototype.animations = function() { return this.animations; };
-
-    Player.prototype.killx = function() {
-        this.sprite.body.velocity.x = 0;
-    };
-
-    Player.prototype.handleCursor = function(cursor) {
-        if (cursors.up.isDown) {
-            if (this.sprite.body.onFloor()) {
-                this.sprite.body.velocity.y = -300;
-            }
-        }
-        if (cursors.left.isDown) {
-            this.animations().play('walk', 15, true);
-            this.sprite.body.velocity.x = -150;
-            // flip left
-            this.sprite.scale.x = -1;
-        } else if (cursors.right.isDown) {
-            this.animations().play('walk', 15, true);
-            this.sprite.body.velocity.x = 150;
-            // flip right
-            this.sprite.scale.x = 1;
-        } else {
-            this.animations().stop();
-        }
-    };
 
     var gameState = {
         preload: function (game) {
@@ -88,19 +44,20 @@ require(['player', '../lib/domReady'], function(player, domready) {
                 layers[layerData.name] = layer;
             });
 
-            player = new Player(game);
-
+            //create player
+            player = Player.new(game);
 
             cursors = game.input.keyboard.createCursorKeys();
         },
         update: function (game) {
-            game.physics.arcade.collide(player.sprite, layers.collision);
-            player.killx();
+            game.physics.arcade.collide(player, layers.collision);
+            
+
         },
         render: function (game) {
             if (enableDebugging) {
                 //game.debug.cameraInfo(game.camera, 16, 16);
-                game.debug.body(player.sprite);
+                //game.debug.body(player);
             }
         }
     };
