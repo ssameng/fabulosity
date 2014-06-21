@@ -2,8 +2,9 @@ define([
     'player',
     '../lib/domReady',
     'scene',
-    'globals'
-], function(Player, domready, Scene, globals) {
+    'globals',
+    'inputkeys'
+], function(Player, domready, Scene, globals, InputKeys) {
 
     var Game = {};
     Game.new = function() {
@@ -30,12 +31,13 @@ define([
             // Create scene manager
             private.scene = Scene.new(public);
 
-            private.cursors = public.phaser.input.keyboard.createCursorKeys();
+            private.input = InputKeys.new(public, private.player);
             private.map = private.scene.loadMap('area01');
         };
 
         public.update = function () {
             private.map.collide(public, private.player);
+            private.input.update();
         };
 
         public.render = function () {
