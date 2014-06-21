@@ -9,6 +9,8 @@ define([], function(){
     };
 
 
+
+
     globals.GRAVITY = 700;
     return globals;
 });
