@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="bedroom-roman" tilewidth="32" tileheight="32">
+  <image source="./bedroom-roman.png" width="224" height="192"/>
+ </tileset>
+ <layer name="Background" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJwTYGBgEBiBmI0CPBTNGwzhSMt4GTVvZGAA6F8OYQ==
+  </data>
+ </layer>
+ <layer name="Midground1" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF1AYSJIrTE8iTiKkJBKhs3mABlMYrBx45BSBWJMEsUuOXFvFMSwAAZwoDyA==
+  </data>
+ </layer>
+ <layer name="Midground2" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi5gJVIMXziwxmIALEwkWrRwwedLwXE0kAsSamjGCDukkTD5AJkd1FqHjZ3kWseLndR6t+hDgAFywMV
+  </data>
+ </layer>
+ <layer name="Midground3" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF1ALiWMRUyDSLEY3PSaY5o4D6QA6KmQmoE4PSfESYyQ3EXFjEFYBYEU1MlAjzhisAAOYHARQ=
+  </data>
+ </layer>
+</map>

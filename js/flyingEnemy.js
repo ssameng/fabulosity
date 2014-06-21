@@ -2,13 +2,14 @@ define(["globals"],function(Globals){
 
     var Enemy = {};
 
+    Enemy.enemyGroup;
 
     Enemy.new=function(globalGame)
     {
 
         var game = globalGame.phaser;
         var public =game.add.sprite(32 * 1, 32*4, 'wheelie_right');
-
+        Enemy.group.add(public);
         var private = {};
 
         public.anchor.setTo(0.5, 0.5);
@@ -59,6 +60,8 @@ define(["globals"],function(Globals){
     Enemy.preload = function(game)
     {
           game.load.spritesheet('wheelie_right', 'data/img/sprite/wheelie_right.png', 64, 64);
+        Enemy.enemyGroup = game.add.group();
+
     };
 
     return Enemy;
