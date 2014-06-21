@@ -6,11 +6,12 @@ define(["globals"], function (globals) {
         var public = game.add.sprite(32 * 10, 32 * 4, 'gripe_run_right');
         var private = {};
 
-        private.motor = {};
-        private.motor.speed = 200;
-        private.motor.currentSpeed = 0;
-        private.motor.acceleration = 20;
-        private.motor.jumpPower = 75;
+        private.motor = {
+            speed: 200,
+            currentSpeed: 0,
+            acceleration: 20,
+            jumpPower: 75,
+        };
 
         // rotate & flip around the center of the sprite
         public.anchor.setTo(0.5, 0.5);
@@ -30,13 +31,13 @@ define(["globals"], function (globals) {
         public.jump = function () {
             if (public.body.onFloor()) {
                 //motor.body.velocity.y = -300;
-                motor.jumping = true;
-                motor.jumpPack = motor.jumpPackFull;
+                private.motor.jumping = true;
+                private.motor.jumpPack = motor.jumpPackFull;
             }
-            if (motor.jumpPack > 0) {
-                motor.jumpPack -= game.time.physicsElapsed;
-                public.body.velocity.y -= motor.jumpPower;
-                console.log(motor.jumpPack);
+            if (private.motor.jumpPack > 0) {
+                private.motor.jumpPack -= game.time.physicsElapsed;
+                public.body.velocity.y -= private.motor.jumpPower;
+                console.log(private.motor.jumpPack);
             }
         };
 
@@ -69,7 +70,7 @@ define(["globals"], function (globals) {
     Player.preload = function(game) {
         // Load the main player spritesheet
         game.load.spritesheet('gripe_run_right',
-            'data/img/sprite/gripe_run_right.png', 64, 64);
+            '/data/img/sprite/gripe_run_right.png', 64, 64);
     };
 
     return Player;
