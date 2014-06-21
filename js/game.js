@@ -17,7 +17,7 @@ define([
                 layers: null,
                 cursors: null,
                 player: null,
-                enemies:[],
+                enemies: null,
 
                 nextQueue: [],
                 everyQueue: [],
@@ -28,6 +28,15 @@ define([
             Scene.preload(public);
             FlyingEnemy.preload(public);
         };
+
+        function checkEnemyCollisions()
+        {
+            public.phaser.physics.arcade.overlap(private.player, private.enemies,function(playa, enemy)
+            {
+                enemy.collidedWithPlayer();
+            });
+
+        }
 
         public.create = function () {
             public.phaser.physics.startSystem(Phaser.Physics.ARCADE);
@@ -44,7 +53,10 @@ define([
                 private.map.collide(public, private.player);
             });
 
-            private.enemies[0] = FlyingEnemy.new(public)
+            private.enemies = public.phaser.add.group();
+            private.enemies.add(FlyingEnemy.new(public));
+
+            public.every(checkEnemyCollisions);
         };
 
         public.update = function () {

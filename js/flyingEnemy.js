@@ -1,19 +1,19 @@
-define(["Globals"],function(Globals){
+define(["globals"],function(Globals){
 
     var Enemy = {};
 
-    var enemyGroup =
 
     Enemy.new=function(globalGame)
     {
+
         var game = globalGame.phaser;
         var public =game.add.sprite(32 * 1, 32*4, 'wheelie_right');
 
         var private = {};
 
         public.anchor.setTo(0.5, 0.5);
-        //game.physics.arcade.enableBody(public);
-        //public.body.setSize(40, 56, 15, 24);
+        game.physics.arcade.enableBody(public);
+        public.body.setSize(40, 56, 15, 24);
 
         private.hitPoints = 1;
 
@@ -40,9 +40,16 @@ define(["Globals"],function(Globals){
 
         };
 
+        public.collidedWithPlayer = function()
+        {
+           public.die();
+        };
+
         public.update = function()
         {
-            public.x+=1;
+            public.body.x+=1;
+
+//            if(game.phaser.physics.overlap())
         };
 
         return public;
