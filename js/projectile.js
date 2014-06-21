@@ -29,7 +29,7 @@ define(["globals"],function(globals) {
     };
 
     Projectile.preload = function(game){
-        globals.randomizer.preload(game, 'rainbow', '.png', 0, 1, globals.fileType.image);
+        globals.randomizer.preload(game, 'rainbow', '.png', 0, 12, globals.fileType.image);
     };
 
     return Projectile;
