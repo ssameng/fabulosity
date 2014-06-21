@@ -1,4 +1,8 @@
-require(['player', '../lib/domReady'], function(player, domready) {
+require([
+    'player',
+    '../lib/domReady',
+    'scene'
+], function(player, domready, Scene) {
     /*jslint sloppy:true, browser: true, devel: true, eqeq: true, vars: true, white: true*/
     /*global Phaser:true*/
 
@@ -63,11 +67,8 @@ require(['player', '../lib/domReady'], function(player, domready) {
 
     var gameState = {
         preload: function (game) {
-            // Load the area01 map and its tiles
-            game.load.tilemap('area01', 'data/map/area01.json', null, Phaser.Tilemap.TILED_JSON);
-            game.load.image('area01_level_tiles', 'data/img/map/area01_level_tiles.png');
-            // Load the main player spritesheet
-            game.load.spritesheet('gripe_run_right', 'data/img/sprite/gripe_run_right.png', 64, 64);
+            Player.preload(game);
+            Scene.preload(game);
         },
         create: function (game) {
             game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -89,7 +90,6 @@ require(['player', '../lib/domReady'], function(player, domready) {
             });
 
             player = new Player(game);
-
 
             cursors = game.input.keyboard.createCursorKeys();
         },

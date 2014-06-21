@@ -65,6 +65,12 @@ define(["globals", "game"], function (Globals, game) {
         return public;
     };
 
+    Player.preload = function(game) {
+        // Load the main player spritesheet
+        game.load.spritesheet('gripe_run_right',
+            'data/img/sprite/gripe_run_right.png', 64, 64);
+    };
+
     return Player;
 });
 
