@@ -10,15 +10,10 @@ require([
     var enableDebugging = true;
 
     var game = null;
+    var scene = null;
     var map = null;
     var layers = null;
     var cursors = null;
-
-    function setupCollisionLayer(game, map, layer) {
-        layer.visible = false;
-        map.setCollisionByExclusion([], true, layer);
-        layer.resizeWorld();
-    }
 
 
     var gameState = {
@@ -28,32 +23,16 @@ require([
         },
         create: function (game) {
             game.physics.startSystem(Phaser.Physics.ARCADE);
-            game.stage.backgroundColor = '#21C3FC';
 
-            // Create the map and associate the tiles with it
-            map = game.add.tilemap('area01');
-            map.addTilesetImage('area01_level_tiles', 'area01_level_tiles');
-
-            // Create all of the layers from the tileset,
-            // but set visible to false if the name is 'collision'
-            layers = {};
-            map.layers.forEach(function (layerData) {
-                var layer = map.createLayer(layerData.name);
-                if (layerData.name === 'collision') {
-                    setupCollisionLayer(game, map, layer);
-                }
-                layers[layerData.name] = layer;
-            });
-
-            //create player
+            // Create player
             player = Player.new(game);
+            // Create scene manager
+            scene = Scene.new(game);
 
             cursors = game.input.keyboard.createCursorKeys();
         },
         update: function (game) {
-            game.physics.arcade.collide(player, layers.collision);
-
-
+            map = scene.loadMap('area01');
         },
         render: function (game) {
             if (enableDebugging) {
