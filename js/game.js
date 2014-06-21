@@ -16,6 +16,9 @@ define([
                 layers: null,
                 cursors: null,
                 player: null,
+
+                nextQueue: [],
+                everyQueue: [],
             };
 
         public.preload = function (game) {
@@ -33,9 +36,22 @@ define([
 
             private.input = InputKeys.new(public, private.player);
             private.map = private.scene.loadMap('area01');
+
+            public.every(function() {
+                private.map.collide(public, private.player);
+            });
         };
 
         public.update = function () {
+            var ncb;
+            while (typeof(ncb = private.nextQueue.pop) !== 'undefined') {
+                ncb(public);
+            }
+
+            _.each(private.everyQueue, function(ecb) {
+                ecb(public);
+            });
+
             private.map.collide(public, private.player);
             private.input.update();
         };
@@ -54,6 +70,14 @@ define([
                 transparent,
                 antialias
             );
+        };
+
+        public.next = function(cb) {
+            private.nextQueue.push(cb);
+        };
+
+        public.every = function(cb) {
+            private.everyQueue.push(cb);
         };
 
         return public;
