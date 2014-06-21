@@ -18,6 +18,7 @@ define(["globals"], function(globals) {
             if (cursors.up.isDown){
                 player.jump();
             }
+
             if (cursors.left.isDown){
                 player.walk(globals.direction.left);
             }
@@ -25,7 +26,6 @@ define(["globals"], function(globals) {
                 player.walk(globals.direction.right);
             }
             else player.walk(globals.direction.stationary);
-
 
         };
 
