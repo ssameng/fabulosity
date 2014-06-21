@@ -18,7 +18,6 @@ define(["globals"],function(globals) {
                 public.body.velocity.x = 200;
                 break;
         }
-        public.body.velocity.x
 
         public.update = function(){
             //move forward here
@@ -29,9 +28,8 @@ define(["globals"],function(globals) {
         return public;
     };
 
-    Projectile.preload = function(game)
-    {
-        game.phaser.load.image('rainbowProjectile', 'data/img/sprite/rainbow.png');
+    Projectile.preload = function(game){
+        globals.randomizer.preload(game, 'rainbow', '.png', 0, 1, globals.fileType.image);
     };
 
     return Projectile;

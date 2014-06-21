@@ -22,11 +22,16 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         };
 
         private.attack = {
-            projectileSprite: 'rainbowProjectile',
+            projectileSprite: 'rainbow0',
             projectileTrail: 'rainbowTrail',
             fireRate:.7,
             fireRateTimer:.7,
             canFire: false
+        };
+
+        private.sfx = {
+            shoot: game.add.audio('rainbowelectric')
+
         };
 
         private.scalex = public.scale.x;
@@ -44,6 +49,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         public.body.linearDamping = 1;
         public.body.collideWorldBounds = true;
 
+
+        //get a random shoot noise
 
         //call this during update based on cursors
         public.jump = function () {
@@ -64,10 +71,19 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         public.walk = function (direction) {
             switch(direction){
                 case globals.direction.stationary:
-                    public.body.velocity.x = 0;
+                    if (private.motor.currentSpeed < 0) {
+                        private.motor.currentSpeed += private.motor.acceleration;
+                        if (private.motor.currentSpeed > 0)
+                            private.motor.currentSpeed = 0;
+                    }
+                    else if (private.motor.currentSpeed > 0) {
+                        private.motor.currentSpeed -= private.motor.acceleration;
+                        if (private.motor.currentSpeed < 0)
+                            private.motor.currentSpeed = 0;
+                    }
                     break;
                 case globals.direction.left:
-                    public.body.velocity.x -= private.motor.acceleration;
+                    private.motor.currentSpeed -= private.motor.acceleration;
                     if (private.motor.currentSpeed < -private.motor.speed) {
                         private.motor.currentSpeed = -private.motor.speed;
                     }
@@ -76,7 +92,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                     private.direction = globals.direction.left;
                     break;
                 case globals.direction.right:
-                    public.body.velocity.x += private.motor.acceleration;
+                    private.motor.currentSpeed += private.motor.acceleration;
                     if (private.motor.currentSpeed > private.motor.speed) {
                         private.motor.currentSpeed = private.motor.speed;
                     }
@@ -85,12 +101,14 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                     private.direction = globals.direction.right;
                     break;
             }
+            public.body.velocity.x = private.motor.currentSpeed;
         };
 
         public.shoot = function(){
             if (!private.attack.canFire) {
                 return;
             }
+            private.sfx.shoot.play();
             var projectile = Projectile.new(game, Player.projectileGroup,
                 public.body.x, public.body.y, private.direction, private.attack.projectileSprite);
             private.attack.fireRateTimer = private.attack.fireRate;
@@ -113,6 +131,12 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         // Load the main player spritesheet
         game.load.spritesheet('gripe_run_right',
             '/data/img/sprite/gripe_run_right.png', 64, 64);
+
+//        for(var i = 0; i < 2; i++){
+//            game.load.audio('rainbowelectric'+i, '/data/sfx/rainbowelectric'+i+'.wav');
+//        }
+        game.load.audio('rainbowelectric', '/data/sfx/rainbowelectric0.wav');
+
 
         Player.projectileGroup = game.add.group();
     };
