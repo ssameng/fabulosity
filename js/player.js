@@ -43,20 +43,21 @@ define(["globals"], function (globals) {
 
         //direction false is left. call this based on cursors input in update
         public.walk = function (direction) {
-
             switch(direction){
+                case globals.direction.stationary:
+                    public.body.velocity.x = 0;
+                    break;
                 case globals.direction.left:
                     public.body.velocity.x -= private.motor.acceleration;
                     if (private.motor.currentSpeed < -private.motor.speed)
                         private.motor.currentSpeed = -private.motor.speed;
+                    public.animations.play('walk');
                     break;
                 case globals.direction.right:
                     public.body.velocity.x += private.motor.acceleration;
                     if (private.motor.currentSpeed > private.motor.speed)
                         private.motor.currentSpeed = private.motor.speed;
-                    break;
-                case globals.direction.stationary:
-                    public.body.velocity.x = 0;
+                    public.animations.play('walk');
                     break;
             }
         };
