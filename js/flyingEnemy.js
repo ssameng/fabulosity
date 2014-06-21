@@ -9,7 +9,7 @@ define(["globals"],function(Globals){
 
         var game = globalGame.phaser;
         var public =game.add.sprite(32 * 1, 32*4, 'wheelie_right');
-        Enemy.group.add(public);
+        Enemy.enemyGroup.add(public);
         var private = {};
 
         public.anchor.setTo(0.5, 0.5);

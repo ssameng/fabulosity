@@ -18,10 +18,9 @@ define([
                 layers: null,
                 cursors: null,
                 player: null,
-                enemies: null,
 
                 nextQueue: [],
-                everyQueue: [],
+                everyQueue: []
             };
 
         public.preload = function (game) {
@@ -33,9 +32,14 @@ define([
 
         function checkEnemyCollisions()
         {
-            public.phaser.physics.arcade.overlap(private.player, private.enemies,function(playa, enemy)
+            public.phaser.physics.arcade.overlap(Player.projectileGroup, FlyingEnemy.enemyGroup,function(playa, enemy)
             {
-                enemy.collidedWithPlayer();
+                enemy.removeHitPoints(100);
+            });
+
+            public.phaser.physics.arcade.overlap(private.player, FlyingEnemy.enemyGroup,function(playa, enemy)
+            {
+                //enemy.collidedWithPlayer();
             });
 
         }
@@ -53,8 +57,7 @@ define([
             // Create player
             private.player = Player.new(public);
             private.input = InputKeys.new(public, private.player);
-            private.enemies = public.phaser.add.group();
-            private.enemies.add(FlyingEnemy.new(public));
+            var enemy = FlyingEnemy.new(public);
 
             public.every(checkEnemyCollisions);
         };
