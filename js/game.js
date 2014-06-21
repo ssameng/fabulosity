@@ -44,10 +44,9 @@ define([
 
         public.update = function () {
             var ncb;
-            if (private.nextQueue.length > 0) {
-                while (typeof(ncb = private.nextQueue.pop) !== 'undefined') {
-                    ncb(public);
-                }
+            while (private.nextQueue.length > 0) {
+                ncb = private.nextQueue.pop();
+                ncb(public);
             }
 
             _.each(private.everyQueue, function(ecb) {
