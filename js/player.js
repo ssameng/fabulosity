@@ -6,6 +6,8 @@ define(['globals'], function (globals) {
         var public = game.phaser.add.sprite(32 * 10, 32 * 4, 'gripe_run_right');
         var private = {};
 
+        game.phaser.physics.arcade.enableBody(public);
+
         private.motor = {
             speed: 200,
             currentSpeed: 0,
@@ -29,9 +31,9 @@ define(['globals'], function (globals) {
         //call this during update based on cursors
         public.jump = function () {
             if (public.body.onFloor()) {
-                //motor.body.velocity.y = -300;
-                private.motor.jumping = true;
-                private.motor.jumpPack = private.motor.jumpPackFull;
+                console.log("jumping");
+                //private.motor.jumping = true;
+                //private.motor.jumpPack = private.motor.jumpPackFull;
             }
             if (private.motor.jumpPack > 0) {
                 private.motor.jumpPack -= game.phaser.time.physicsElapsed;
@@ -39,6 +41,8 @@ define(['globals'], function (globals) {
                 console.log(private.motor.jumpPack);
             }
         };
+
+
 
 
         //direction false is left. call this based on cursors input in update
