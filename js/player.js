@@ -1,6 +1,5 @@
 define(["globals", "game"], function (Globals, game) {
 
-
     var Player = {};
 
     Player.new = function (game) {
@@ -68,3 +67,4 @@ define(["globals", "game"], function (Globals, game) {
 
     return Player;
 });
+
