@@ -1,8 +1,9 @@
 require([
     'player',
     '../lib/domReady',
-    'scene'
-], function(Player, domready, Scene) {
+    'scene',
+    'globals'
+], function(Player, domready, Scene, globals) {
     /*jslint sloppy:true, browser: true, devel: true, eqeq: true, vars: true, white: true*/
     /*global Phaser:true*/
 
@@ -33,6 +34,7 @@ require([
         },
         update: function (game) {
             map = scene.loadMap('area01');
+            map.collide(player, layers.collision);
         },
         render: function (game) {
             if (enableDebugging) {

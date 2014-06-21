@@ -1,4 +1,4 @@
-define(["globals"], function (Globals) {
+define(["globals"], function (globals) {
 
     var Player = {};
 
@@ -20,14 +20,14 @@ define(["globals"], function (Globals) {
         // Use all of the frames for the 'walk' animation
         public.animations.add('walk');
 
-        public.body.gravity.y = Globals.GRAVITY;
+        public.body.gravity.y = globals.GRAVITY;
         public.body.bounce.y = 0;
         public.body.linearDamping = 1;
         public.body.collideWorldBounds = true;
 
 
         //call this during update based on cursors
-        public.Jump = function () {
+        public.jump = function () {
             if (public.body.onFloor()) {
                 //motor.body.velocity.y = -300;
                 motor.jumping = true;
@@ -42,20 +42,20 @@ define(["globals"], function (Globals) {
 
 
         //direction false is left. call this based on cursors input in update
-        public.Walk = function (direction) {
+        public.walk = function (direction) {
 
             switch(direction){
-                case Globals.Direction.Left:
-                    public.body.velocity.x += private.motor.acceleration;
-                    if (private.motor.currentSpeed > private.motor.speed)
-                        private.motor.currentSpeed = private.motor.speed;
-                    break;
-                case Globals.Direction.Right:
+                case globals.direction.left:
                     public.body.velocity.x -= private.motor.acceleration;
                     if (private.motor.currentSpeed < -private.motor.speed)
                         private.motor.currentSpeed = -private.motor.speed;
                     break;
-                case Globals.Direction.Stationary:
+                case globals.direction.right:
+                    public.body.velocity.x += private.motor.acceleration;
+                    if (private.motor.currentSpeed > private.motor.speed)
+                        private.motor.currentSpeed = private.motor.speed;
+                    break;
+                case globals.direction.stationary:
                     public.body.velocity.x = 0;
                     break;
             }

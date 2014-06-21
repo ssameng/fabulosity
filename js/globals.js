@@ -1,15 +1,15 @@
 define([], function(){
-    var Globals = {};
-    Globals.Direction = {
-        Up         : 1,
-        Down       : 2,
-        Left       : 3,
-        Right      : 4,
-        Stationary : 5
+    var globals = {};
+    globals.direction = {
+        up         : 1,
+        down       : 2,
+        left       : 3,
+        right      : 4,
+        stationary : 5
     };
 
 
-    Globals.GRAVITY = 700;
-    return Globals;
+    globals.GRAVITY = 700;
+    return globals;
 });
 
