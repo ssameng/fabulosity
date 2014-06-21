@@ -44,16 +44,15 @@ define([
 
         public.update = function () {
             var ncb;
-            while (typeof(ncb = private.nextQueue.pop) !== 'undefined') {
-                ncb(public);
+            if (private.nextQueue.length > 0) {
+                while (typeof(ncb = private.nextQueue.pop) !== 'undefined') {
+                    ncb(public);
+                }
             }
 
             _.each(private.everyQueue, function(ecb) {
                 ecb(public);
             });
-
-            private.map.collide(public, private.player);
-            private.input.update();
         };
 
         public.render = function () {
