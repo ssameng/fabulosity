@@ -32,24 +32,15 @@ define(['globals'], function (globals) {
         public.body.collideWorldBounds = true;
 
 
-        public.update = function() {
-            if (private.motor.jumping){
-                console.log("HOLD");
-            }
-        };
-
         //call this during update based on cursors
         public.jump = function () {
             if (public.body.onFloor()) {
                 private.motor.jumping = true;
                 private.motor.jumpPack = private.motor.jumpPackFull;
             }
-            console.log(private.motor.jumpPack);
             if (private.motor.jumpPack > 0) {
-                console.log("GO UP");
                 private.motor.jumpPack -= game.phaser.time.physicsElapsed;
                 public.body.velocity.y -= private.motor.jumpPower;
-                console.log(private.motor.jumpPack);
             }
             else private.motor.jumping = false;
         };

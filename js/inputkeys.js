@@ -27,6 +27,9 @@ define(["globals"], function(globals) {
             }
             else player.walk(globals.direction.stationary);
 
+            if (private.attack.isDown){
+                console.log("puttingattack");
+            }
         };
 
         game.every(function() {
