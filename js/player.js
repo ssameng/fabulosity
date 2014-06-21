@@ -1,4 +1,4 @@
-define(["globals", "game"], function (Globals, game) {
+define(["globals"], function (Globals) {
 
     var Player = {};
 
@@ -15,12 +15,12 @@ define(["globals", "game"], function (Globals, game) {
         // rotate & flip around the center of the sprite
         public.anchor.setTo(0.5, 0.5);
         // width, height, translateX, translateY
-        game.physics.arcade.enableBody(public.sprite);
+        game.physics.arcade.enableBody(public);
         public.body.setSize(40, 56, 15, 24);
         // Use all of the frames for the 'walk' animation
         public.animations.add('walk');
 
-        public.body.gravity.y = globalGravity;
+        public.body.gravity.y = Globals.GRAVITY;
         public.body.bounce.y = 0;
         public.body.linearDamping = 1;
         public.body.collideWorldBounds = true;
