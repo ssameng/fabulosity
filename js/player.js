@@ -4,7 +4,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
     Player.projectileGroup;
 
-    Player.new = function (game) {
+    Player.new = function (game, endGameTrigger) {
         var public = game.phaser.add.sprite(3060, 32 * 4, 'playersprite');
         var private = {};
 
@@ -117,6 +117,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                 public.faceDirection(globals.direction.right);
                 public.animations.stop();
                 public.animations.frame = 0;
+                if(endGameTrigger)
+                    endGameTrigger();
             }
         };
 

@@ -48,6 +48,12 @@ define([
         
         
 
+        function onPlayerReachEnd()
+        {
+            public.moveCameraToSpot();
+            private.keepGeneratingEnemies = false;
+        };
+
         function checkEnemyCollisions()
         {
             public.phaser.physics.arcade.overlap(Player.projectileGroup,
@@ -90,7 +96,7 @@ define([
 
 
             // Create player
-            private.player = Player.new(public);
+            private.player = Player.new(public, onPlayerReachEnd);
             private.input = InputKeys.new(public, private.player);
 
             //create beefcake
@@ -175,6 +181,16 @@ private.testText = Text.new(public, 'Test', 100, 0,
 
         public.moveCameraToSpot = function()
         {
+
+            public.phaser.camera.follow(null);
+            /*var x,y;
+            x= public.camera.x;
+            y=public.camera.y;
+            public.camera.reset();
+
+            public.camera.setPosition(x,y);*/
+            public.phaser.add.tween(public.camera).to({x:3083 - 150},1500, Phaser.Easing.Linear.None,true);//.onComplete();
+           // public.camera.setPosition(3083+50,0);
 
         };
 
