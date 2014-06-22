@@ -17,6 +17,8 @@ define(['map'], function(Map) {
 
     var Scene = {};
 
+    Scene.group;
+
     Scene.new = function (game) {
         var public  = {},
             private = {};
@@ -41,6 +43,7 @@ define(['map'], function(Map) {
             var layers = {};
             map.layers.forEach(function (layerData) {
                 var layer = map.createLayer(layerData.name);
+                Scene.group.add(layer);
                 if (layerData.name === 'collision') {
                     private.setupCollisionLayer(game, map, layer);
                 }
@@ -59,6 +62,8 @@ define(['map'], function(Map) {
             game.load.tilemap(name, scene.tiles.file, null, Phaser.Tilemap.TILED_JSON);
             game.load.image(scene.tiles.name, scene.tiles.image);
         });
+
+        Scene.group = game.add.group()
     };
 
     return Scene;

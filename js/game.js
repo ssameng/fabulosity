@@ -24,8 +24,8 @@ define([
             };
 
         public.preload = function (game) {
-            Player.preload(public);
             Scene.preload(public);
+            Player.preload(public);
             FlyingEnemy.preload(public);
             Projectile.preload(public);
         };
