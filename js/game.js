@@ -5,7 +5,8 @@ define([
     'globals',
     'inputkeys',
     'flyingEnemy',
-    'projectile'
+    'projectile',
+    'text',
 ], function(
     Player,
     domready,
@@ -13,7 +14,8 @@ define([
     globals,
     InputKeys,
     FlyingEnemy,
-    Projectile
+    Projectile,
+    Text
 ) {
     var Game = {};
     Game.new = function() {
@@ -66,6 +68,7 @@ define([
             // Create player
             private.player = Player.new(public);
             private.input = InputKeys.new(public, private.player);
+            private.testText = Text.new(public, 'Test', 0, 0, { fadeSpeed: 100 });
             var enemy = FlyingEnemy.new(public);
 
             public.every(checkEnemyCollisions);
