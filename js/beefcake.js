@@ -1,22 +1,34 @@
 define(["globals"],function(Globals){
 
-    var Enemy = {};
+    var BeefCake = {};
 
-    Enemy.enemyGroup;
+    BeefCake.BeefCakeGroup;
 
-    Enemy.new = function(globalGame, originX, originY) {
+    BeefCake.new = function(globalGame, originX, originY) {
+        var game = globalGame.phaser;
         var public = game.add.sprite(originX, originY, 'beefcake');
+        var private = {};
+
+        public.shoot = function() {
+
+            game.levelscript.displayNextBuff(originX, originY);
+            //spawn particle here. just one.
+        };
+
 
         return public;
     };
 
 
-    Enemy.preload = function(game){
+
+
+    BeefCake.preload = function(game){
         game.load.spritesheet('beefcake', 'data/img/sprite/beefcake-sheet.png', 128, 128);
-        Enemy.enemyGroup = game.add.group();
+        //dumbell projectile
+        BeefCake.BeefCakeGroup = game.add.group();
     };
 
 
 
-    return Enemy;
+    return BeefCake;
 });

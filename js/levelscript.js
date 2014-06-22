@@ -81,8 +81,30 @@ define(["globals", "text"], function(globals, Text) {
             //callback on player collision too
         };
 
+
         public.displayNextMessage = function(originX, originY, color, fadeDirection){
             var testText = Text.new(game, public.getRandomSpeech(), originX, originY,
+                { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:fadeDirection, fadeOffset:20, color:color });
+        };
+
+        public.displayNextDialogue = function(){
+            switch (private.turntrack){
+                case 1: //punk
+                    private.dialogue.turntrack = 2;
+                    var text = Text.new(game, private.dialogue.punk[private.dialogue.punkcount++],
+                        originX, originY,
+                        { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:fadeDirection, fadeOffset:20, color:color });
+                    break;
+                case 2: //beef
+                    private.dialogue.turntrack = 2;
+                    var text = Text.new(game, private.dialogue.beef[private.dialogue.punkcount++],
+                        originX, originY,
+                        { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:fadeDirection, fadeOffset:20, color:color });
+                    break;
+                default:
+                    break;
+            }
+            var text =   Text.new(game, public.getRandomSpeech(), originX, originY,
                 { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:fadeDirection, fadeOffset:20, color:color });
         };
 

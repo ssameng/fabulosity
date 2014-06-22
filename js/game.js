@@ -77,7 +77,7 @@ private.testText = Text.new(public, 'Test', 100, 0,
                 { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
             private.keepGeneratingEnemies = true;
 
-            public.doAfter(enemyFactory, 1);
+            public.doAfter(enemyFactory, 3);
             /*set up generator
 
 
@@ -101,7 +101,7 @@ private.testText = Text.new(public, 'Test', 100, 0,
                if(!private.keepGeneratingEnemies)
                    return;
                FlyingEnemy.new(public, 640+ private.player.x, Math.random()*public.phaser.world.height);
-               public.doAfter(enemyFactory, 1);
+               public.doAfter(enemyFactory, 3);
            }
 
         public.update = function () {

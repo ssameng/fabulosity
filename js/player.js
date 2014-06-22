@@ -5,7 +5,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
     Player.projectileGroup;
 
     Player.new = function (game) {
-        var public = game.phaser.add.sprite(32 * 10, 32 * 4, 'gripe_run_right');
+        var public = game.phaser.add.sprite(32 * 10, 32 * 4, 'playersprite');
         var private = {};
 
         game.phaser.physics.arcade.enableBody(public);
@@ -153,8 +153,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
     Player.preload = function(game) {
         // Load the main player spritesheet
-        game.load.spritesheet('gripe_run_right',
-            '/data/img/sprite/gripe_run_right.png', 64, 64);
+        game.load.spritesheet('playersprite',
+            '/data/img/sprite/mainchar-sheet.png', 56, 80);
 
 
 //        for(var i = 0; i < 2; i++){
