@@ -5,7 +5,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
     Player.projectileGroup;
 
     Player.new = function (game) {
-        var public = game.phaser.add.sprite(32 * 10, 32 * 4, 'playersprite');
+        var public = game.phaser.add.sprite(3060, 32 * 4, 'playersprite');
         var private = {};
 
         game.phaser.physics.arcade.enableBody(public);
@@ -43,7 +43,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         game.phaser.physics.arcade.enableBody(public);
         public.body.setSize(40, 56, 15, 24);
         // Use all of the frames for the 'walk' animation
-        public.animations.add('walk');
+        public.animations.add('walk', [4,  2 ], 5, true);
+
 
         public.body.gravity.y = globals.GRAVITY;
         public.body.bounce.y = 0;
@@ -110,7 +111,11 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
             if (public.body.x >= 3083){
                 //LOCK THAT SHIT
-                public.walkable = false;
+                private.walkable = false;
+                public.body.velocity.x = 0;
+                public.faceDirection(globals.direction.right);
+                public.animations.stop();
+                public.animations.frame = 0;
             }
         };
 
@@ -160,7 +165,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
     Player.preload = function(game) {
         // Load the main player spritesheet
         game.load.spritesheet('playersprite',
-            '/data/img/sprite/mainchar-sheet.png', 56, 80);
+            '/data/img/sprite/mainchar-sheet.png', 64, 80);
 
 
 //        for(var i = 0; i < 2; i++){
