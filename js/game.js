@@ -101,7 +101,7 @@ private.testText = Text.new(public, 'Test', 100, 0,
                if(!private.keepGeneratingEnemies)
                    return;
                FlyingEnemy.new(public, 640+ private.player.x, Math.random()*public.phaser.world.height);
-               public.doAfter(enemyFactory, 1);
+               public.doAfter(enemyFactory, 3);
            }
 
         public.update = function () {
