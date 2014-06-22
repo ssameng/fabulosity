@@ -73,7 +73,7 @@ define([
             private.player = Player.new(public);
             private.input = InputKeys.new(public, private.player);
 
-            private.testText = Text.new(public, 'Test', 0, 0, { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5 });
+            private.testText = Text.new(public, 'Test', 100, 0, { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
             var enemy = FlyingEnemy.new(public);
             public.doAfter(function(){FlyingEnemy.new(public)}, 5);
 
