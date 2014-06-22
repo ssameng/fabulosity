@@ -58,6 +58,7 @@ define([
 
         function finalScene()
         {
+            private.player.body.gravity.y = 0;
             private.player.lockShoot(true);
             public.finalSceneReached = true;
         }
@@ -117,6 +118,7 @@ define([
                     if(!public.finalSceneReached) {
 
                         public.finalSceneReached = true;
+
                         var dialog = public.levelscript.nextDialogue();
                         Text.new(public, dialog,
                             private.beefcake.body.x, private.beefcake.body.y + 100,
