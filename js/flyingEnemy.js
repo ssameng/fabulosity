@@ -13,6 +13,8 @@ define(["globals"],function(Globals){
 
         var game = globalGame.phaser;
         var public = game.add.sprite(originX, originY, 'words');
+        public.animations.frame = Math.floor(Math.random()*4);
+
         Enemy.enemyGroup.add(public);
         var private = {};
 
@@ -21,6 +23,8 @@ define(["globals"],function(Globals){
         public.body.setSize(40, 56, 15, 24);
 
         private.hitPoints = 1;
+
+
 
 
         //particle emitter

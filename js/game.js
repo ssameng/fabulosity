@@ -81,7 +81,7 @@ define([
             
             public.levelscript = LevelScript.new(public, private.player);
 
-            public.camera.follow(private.player, Phaser.Camera.FOLLOW_PLATFORMER);
+            public.camera.follow(private.player, Phaser.Camera.FOLLOW_TOPDOWN);
         };
 
         public.update = function () {
