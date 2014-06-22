@@ -42,6 +42,7 @@ define([
             Player.preload(public);
             Projectile.preload(public);
             FlyingEnemy.preload(public);
+            BeefCake.preload(public);
         };
         
         
