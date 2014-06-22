@@ -4,9 +4,13 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
     Player.projectileGroup;
 
+    Player.playerGroup;
+
     Player.new = function (game, endGameTrigger) {
         var public = game.phaser.add.sprite(3060, 32 * 4, 'playersprite');
         var private = {};
+
+        Player.playerGroup.add(public)
 
         game.phaser.physics.arcade.enableBody(public);
 
@@ -179,6 +183,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
 
         Player.projectileGroup = game.add.group();
+        Player.playerGroup = game.add.group();
     };
 
     return Player;

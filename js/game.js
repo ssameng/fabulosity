@@ -70,11 +70,10 @@ define([
             public.phaser.physics.arcade.overlap(BeefCake.BeefCakeGroup,
                 Player.projectileGroup,
                  function(beefcake, playerBullet) {
-                    console.log("rainbow hit");
-                    //beefcake.onHit();
+                    beefcake.onHit();
              });
 
-            public.phaser.physics.arcade.overlap( public.player, BeefCake.ProjectileGroup,
+            public.phaser.physics.arcade.overlap( private.player, BeefCake.ProjectileGroup,
                 function(playa, dumbell)
                 {
                     console.log("dumbell hit");
@@ -183,12 +182,6 @@ private.testText = Text.new(public, 'Test', 100, 0,
         {
 
             public.phaser.camera.follow(null);
-            /*var x,y;
-            x= public.camera.x;
-            y=public.camera.y;
-            public.camera.reset();
-
-            public.camera.setPosition(x,y);*/
             public.phaser.add.tween(public.camera).to({x:3083 - 150},1500, Phaser.Easing.Linear.None,true);//.onComplete();
            // public.camera.setPosition(3083+50,0);
 
