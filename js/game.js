@@ -46,13 +46,22 @@ define([
             BeefCake.preload(public);
         };
         
-        
+        private.finalSceneReached = false;
 
         function onPlayerReachEnd()
         {
-            public.moveCameraToSpot();
             private.keepGeneratingEnemies = false;
+            private.player.lockShoot();
+            public.moveCameraToSpot(finalScene);
+
         };
+
+        function finalScene()
+        {
+            private.player.lockShoot(true);
+            private.finalSceneReached = true;
+            //unblockshoot
+        }
 
         function checkEnemyCollisions()
         {
@@ -70,7 +79,23 @@ define([
             public.phaser.physics.arcade.overlap(BeefCake.BeefCakeGroup,
                 Player.projectileGroup,
                  function(beefcake, playerBullet) {
-                    beefcake.onHit();
+                     if(private.finalSceneReached) {
+                         private.player.lockShoot();
+                         private.finalSceneReached = false;
+
+                         var dialog = public.levelscript.nextDialogue();
+
+                         if(dialog == null)
+                         console.log("hmm")
+                         var text = Text.new(public, dialog.text,
+                             private.player.body.x, private.player.body.y+private.player.height/2,
+                             { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
+          /*               //delay
+                         var text = Text.new(game, dialog.subtext,
+                             private.player.body.x, private.player.body.y+private.player.height/2,
+                             { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
+*/
+                     }
              });
 
             public.phaser.physics.arcade.overlap( private.player, BeefCake.ProjectileGroup,
@@ -207,11 +232,13 @@ private.testText = Text.new(public, 'Test', 100, 0,
         };
 
 
-        public.moveCameraToSpot = function()
+        public.moveCameraToSpot = function(onComplete)
         {
 
             public.phaser.camera.follow(null);
-            public.phaser.add.tween(public.camera).to({x:3083 - 150},1500, Phaser.Easing.Linear.None,true);//.onComplete();
+            var tween =  public.phaser.add.tween(public.camera);
+            tween.to({x:3083 - 150},1500, Phaser.Easing.Linear.None,true)
+                tween.onComplete.add(onComplete);
            // public.camera.setPosition(3083+50,0);
 
         };

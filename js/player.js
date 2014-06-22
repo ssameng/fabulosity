@@ -126,6 +126,11 @@ define(['globals', 'projectile'], function (globals, Projectile) {
             }
         };
 
+    public.lockShoot= function(unlock)
+    {
+        private.attack.lock = !unlock;
+    }
+
         public.shoot = function(){
             if (!private.attack.canFire || private.attack.lock) {
                 return;
