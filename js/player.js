@@ -43,7 +43,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         game.phaser.physics.arcade.enableBody(public);
         public.body.setSize(40, 56, 15, 24);
         // Use all of the frames for the 'walk' animation
-        public.animations.add('walk', [4,  2 ], 5, true);
+        public.animations.add('walk', [4], 3, true);
 
 
         public.body.gravity.y = globals.GRAVITY;
@@ -87,6 +87,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                         if (private.motor.currentSpeed < 0)
                             private.motor.currentSpeed = 0;
                     }
+                    public.animations.stop();
+                    public.animations.frame = 4;
                     break;
                 case globals.direction.left:
                     private.motor.currentSpeed -= private.motor.acceleration;
@@ -116,7 +118,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                 public.body.velocity.x = 0;
                 public.faceDirection(globals.direction.right);
                 public.animations.stop();
-                public.animations.frame = 0;
+                public.animations.frame = 4;
             }
         };
 
