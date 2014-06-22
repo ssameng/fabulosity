@@ -176,6 +176,10 @@
             <filename>img/sprite/words2.png</filename>
             <filename>img/sprite/words3.png</filename>
             <filename>img/sprite/words4.png</filename>
+            <filename>img/sprite/words1.png</filename>
+            <filename>img/sprite/words5.png</filename>
+            <filename>img/sprite/words6.png</filename>
+            <filename>img/sprite/words7.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
