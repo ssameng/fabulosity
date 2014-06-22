@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="15" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="bedroom-roman" tilewidth="32" tileheight="32">
-  <image source="bedroom-roman.png" width="224" height="192"/>
+  <image source="bedroom-roman.png" width="224" height="256"/>
  </tileset>
- <tileset firstgid="43" name="collisions" tilewidth="32" tileheight="32">
+ <tileset firstgid="57" name="collisions" tilewidth="32" tileheight="32">
   <image source="../img/map/metatiles32x32.png" width="160" height="32"/>
  </tileset>
  <layer name="Background" width="100" height="15">
@@ -13,7 +13,7 @@
  </layer>
  <layer name="Furniture" width="100" height="15">
   <data encoding="base64" compression="zlib">
-   eJztlcEKwjAQRANasF4Nai+2Suv/f6IJeFhKQjZssjEyDwbadDobmECMAQAAAABoy7FQzvBjnl55JL4fGBmr0+b0Fnqo10S8NIeTRanVY8ncVB/ngrP+kZxzFsM6XRgygXcu968kHk5Gj1zJs222C11uyvPWwFpqD9Iu5kzvSzivFZw7U5rpu5gqzIkxN1Iui9Nztxa7M733RLT/L8QYyNTuonc0zwMAmnwAUOoLmg==
+   eJztlcEKgzAQRANSqL1Wql60iu3/f6IRPCySkA0bN0bmwYDGcTYwgRgDAAAAAHAPHhfzlMoQ+F4xMharn9Vf6KFe4/HSHE4W5aweU+aG+nglnHVHYs6Zj8bqzZBxvHPpdkk8nIwS+ZDnJtsudGmV5y2OtdAepF2Mkd5ZOC8XnDtTmrl10Z8wx8eYSbF8rabDmu/O3LxPouN/LmpHpnYXpaN5HgDQZAUVaguW
   </data>
  </layer>
  <layer name="Lights" width="100" height="15">
@@ -23,7 +23,7 @@
  </layer>
  <layer name="collision" width="100" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt0bEJADAMA0HvY7L/eiGNyQZWcQfqBV8FAECa/gbsOtsHGFrk0CKHFjm0AJ4LUJ8BYw==
+   eJztlkEOwCAIBPlWY///rqZXYioIyJYwiZcGV3CpStQ0+1zK0cSi2eP2LB7v/Ws/5JzoZ+35Fz2QQctPko8lJrsXPPplFYPm6RermrV3Z0SsVauSH6gMqns+o+fIGcb5yPX+zQ+rFy+af+l2WG8nNw8db7imhxfa9VHfMLM8+TdpTRJ9rnnai0yy37MV7uGmLg+9jDbU
   </data>
  </layer>
 </map>
