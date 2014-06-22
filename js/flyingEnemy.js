@@ -12,7 +12,7 @@ define(["globals"],function(Globals){
         originY = originY || 0;
 
         var game = globalGame.phaser;
-        var public =game.add.sprite(originX, originY, 'wheelie_right');
+        var public = game.add.sprite(originX, originY, 'words');
         Enemy.enemyGroup.add(public);
         var private = {};
 
@@ -37,7 +37,7 @@ define(["globals"],function(Globals){
 
         public.setHitPoints= function(points)
         {
-            private.hitPoints= points;
+            private.hitPoints = points;
         };
 
         public.die = function()
@@ -59,7 +59,7 @@ define(["globals"],function(Globals){
 
         public.collidedWithPlayer = function()
         {
-            console.log("work!");
+           // console.log("work!");
             public.die();
         };
 
@@ -75,7 +75,7 @@ define(["globals"],function(Globals){
 
     Enemy.preload = function(game)
     {
-        game.load.spritesheet('wheelie_right', 'data/img/sprite/wheelie_right.png', 64, 64);
+        game.load.spritesheet('words', 'data/img/sprite/wordEnemies.png', 128, 128);
         Globals.randomizer.preload(game, 'squareparticle', '.png', 0, 3, Globals.fileType.image);
         Enemy.enemyGroup = game.add.group();
 
