@@ -1,4 +1,4 @@
-define(["globals"], function(globals) {
+define(["globals", "text"], function(globals, Text) {
 
 
     var LevelScript = {};
@@ -52,6 +52,11 @@ define(["globals"], function(globals) {
             //move player, freeze player, center camera
             //every shoot becomes a dialogue. callback on enemy collision
             //callback on player collision too
+        };
+
+        public.displayNextMessage = function(originX, originY, color, fadeDirection){
+            var testText = Text.new(game, 'Test', originX, originY,
+                { fadeSpeed: 1, fadeOutAfter:3, fadeDir:fadeDirection, fadeOffset:10, color:color });
         };
 
         return public;

@@ -30,7 +30,17 @@ define(["globals"], function(globals) {
                     switch (options.fadeDir)
                     {
                         case globals.direction.down:
-                            game.phaser.add.tween(public).to( { y: y+ options.fadeOffset}, fadeSpeed*1000, Phaser.Easing.Linear.None, true);
+                            game.phaser.add.tween(public).to(
+                                { y: y+ options.fadeOffset}, fadeSpeed*1000, Phaser.Easing.Sinusoidal.InOut, true);
+                            break;
+                        case globals.direction.left:
+                            game.phaser.add.tween(public).to(
+                                { x: x+ options.fadeOffset}, fadeSpeed*1000, Phaser.Easing.Sinusoidal.InOut, true);
+                            break;
+                        case globals.direction.right:
+                            game.phaser.add.tween(public).to(
+                                { x: x- options.fadeOffset}, fadeSpeed*1000, Phaser.Easing.Sinusoidal.InOut, true);
+                            break;
                     }
                 }
 
