@@ -75,6 +75,8 @@ define([
             });
 
 
+
+
             public.phaser.physics.arcade.overlap(BeefCake.BeefCakeGroup,
                 Player.projectileGroup,
                  function(beefcake, playerBullet) {
@@ -87,7 +89,15 @@ define([
                          var text = Text.new(public, dialog,
                              private.player.x, private.player.y + private.player.height/2,
                              { fadeSpeed: 1, fadeOutAfter:2, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
-                         public.doAfter(function() {beefcake.shoot();},2);
+                         public.doAfter(function() {
+
+                             var dialog = public.levelscript.nextDialogue();
+                             Text.new(public, dialog,
+                                 private.beefcake.body.x, private.beefcake.body.y,
+                                 { fadeSpeed: 1, fadeOutAfter:3, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
+                             beefcake.shoot();
+
+                         },3.5);
                      //    beefcake.shoot();
                          //delay
 /*
@@ -104,12 +114,16 @@ define([
             public.phaser.physics.arcade.overlap( private.player, BeefCake.ProjectileGroup,
                 function(playa, dumbell)
                 {
+                    if(!public.finalSceneReached) {
 
-                    var dialog = public.levelscript.nextDialogue();
-                    Text.new(public, dialog.text,
-                        private.beefcake.body.x, private.beefcake.body.y,
-                        { fadeSpeed: 1, fadeOutAfter:2, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
+                        public.finalSceneReached = true;
+                        var dialog = public.levelscript.nextDialogue();
+                        Text.new(public, dialog,
+                            private.beefcake.body.x, private.beefcake.body.y + 100,
+                            { fadeSpeed: 1, fadeOutAfter: 3, fadeDir: globals.direction.right, fadeOffset: 20, color: '#FFFFFF' });
 
+                        private.player.lockShoot(true);
+                    }
                    //playa.hitWithDumbell();
              });
 
