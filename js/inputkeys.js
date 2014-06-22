@@ -11,7 +11,8 @@ define(["globals"], function(globals) {
         //bindings
         private.jump = game.phaser.input.keyboard.addKey(Phaser.Keyboard.Z);
         private.attack = game.phaser.input.keyboard.addKey(Phaser.Keyboard.X);  
-        
+
+
 
         //call this in update to handle game.phaser input
         public.update = function(){
@@ -31,7 +32,7 @@ define(["globals"], function(globals) {
             //action/shoot and shit
             if (private.attack.isDown){
                 player.shoot();
-                game.levelscript.displayNextMessage(player.x, player.y, '#000000', globals.direction.left);
+
             }
         };
 
