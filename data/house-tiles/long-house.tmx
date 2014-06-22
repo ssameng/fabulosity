@@ -13,11 +13,7 @@
  </layer>
  <layer name="Furniture" width="113" height="15">
   <data encoding="base64" compression="zlib">
-<<<<<<< HEAD
-   eJztlcEKgzAQRAOlB71War3Uttge25P+/6d1BYUgG5Ml29jIPBjUOM4KGzbGAAAAAADsg+OfeXLl6nl/CMjoSE/SK9Jje43Da+eEZNn8qo+aub5+lIq19ohkn7moSKcAGeaZ48OsXSat4fOEZOTI2bqvlLN70qCcqUGduF7HrPn+IbYXrdD7iKy3Fa4zc5wD70ncTJBkjr1ohBkxtBtJyo10X6y5zsx5FszX5XccBZOZuhe5k3I/AJCSL1KWDYg=
-=======
    eJztls0KgCAQhIUIqmvRz6U/qvd/xIw6SCiubJnhfDBgOs0KuweFAAAAAAAAMZAG5omJ3nKeEDIWqVVqY3pUrzB41RxKFpe35uXJXFsPiwdrgROXeTZRSZUECc03lfYSx0PJiIVaWVef3SJ8Gs/1Fs2e7Q7c/g2O3plZ709Q3g3czKN/3Qt1TAwfyQej1HTbM70bDm+m6P6fjlyT6bt/MRL63AEQAjvk3AuW
->>>>>>> cb89333d89dc9e7c813011f060d1e70f00591616
   </data>
  </layer>
  <layer name="Lights" width="113" height="15">
@@ -27,11 +23,7 @@
  </layer>
  <layer name="collision" width="113" height="15">
   <data encoding="base64" compression="zlib">
-<<<<<<< HEAD
-   eJztllEOwCAIQ7nW4u5/rmW/ZJkgoA3pS/xZEAt1qggh61zOQWrx9Jie1ZPdP/phZ8d+9p5/1QMZNH0WPZGY03shY7/MYtA8/WNWs/furIiN5urkBypD+p7P6Bo1Izhf14vUAyQtFqJevHj+pTthvRVtGXmy0TkzvPCuj/qG+dKpv1lrsuTXOXd7cZLT79kO9zDpywN3pDdG
-=======
    eJztkkEOgCAMBPutRv//LuNBDo1GkMpSuptMvGBlnaqIKCGEOFIb9D1Jv8OaoLtkxTPoLhnIFPS/Rjl8OxNpD7LuOh3G6nhlkzW7ZnHY42/2vit2svHw18I+plYJ0uEfe2BnjvYXjZbcvfM048u31DzP0B8hZAYOkxb8Uw==
->>>>>>> cb89333d89dc9e7c813011f060d1e70f00591616
   </data>
  </layer>
 </map>
