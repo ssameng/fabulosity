@@ -1,4 +1,4 @@
-define(["globals"],function(Globals){
+define(["globals"],function(globals){
 
     var BeefCake = {};
 
@@ -8,6 +8,16 @@ define(["globals"],function(Globals){
         var game = globalGame.phaser;
         var public = game.add.sprite(originX, originY, 'beefcake');
         var private = {};
+
+        // rotate & flip around the center of the sprite
+        public.anchor.setTo(0.5, 0.5);
+        // width, height, translateX, translateY
+        game.physics.arcade.enableBody(public);
+
+        //public.body.gravity.y = globals.GRAVITY;
+        public.body.bounce.y = 0;
+        public.body.linearDamping = 1;
+        public.body.collideWorldBounds = true;
 
         public.shoot = function() {
 
