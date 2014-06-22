@@ -10,7 +10,8 @@ define(["globals"], function(globals) {
 
         //bindings
         private.jump = game.phaser.input.keyboard.addKey(Phaser.Keyboard.Z);
-        private.attack = game.phaser.input.keyboard.addKey(Phaser.Keyboard.X);  
+        private.attack = game.phaser.input.keyboard.addKey(Phaser.Keyboard.X);
+        private.printLocation = game.phaser.input.keyboard.addKey(Phaser.Keyboard.L);
 
 
 
@@ -32,7 +33,10 @@ define(["globals"], function(globals) {
             //action/shoot and shit
             if (private.attack.isDown){
                 player.shoot();
+            }
 
+            if (private.printLocation.isDown){
+                console.log(player.body.x + ", " + player.body.y);
             }
         };
 

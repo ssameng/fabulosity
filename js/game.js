@@ -7,7 +7,8 @@ define([
     'flyingEnemy',
     'projectile',
     'text',
-    'levelscript'
+    'levelscript',
+    'beefcake'
 ], function(
     Player,
     domready,
@@ -17,7 +18,8 @@ define([
     FlyingEnemy,
     Projectile,
     Text,
-    LevelScript
+    LevelScript,
+    BeefCake
 ) {
     var Game = {};
     Game.new = function() {
@@ -73,21 +75,23 @@ define([
             private.player = Player.new(public);
             private.input = InputKeys.new(public, private.player);
 
+            //create beefcake
+            //3083 is the trigger
+            public.beefcake = BeefCake.new(public, 3352, 296);
+
 private.testText = Text.new(public, 'Test', 100, 0,
                 { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
             private.keepGeneratingEnemies = true;
 
             public.doAfter(enemyFactory, 3);
             /*set up generator
-
-
-
-            public.doAfter(function(){
+             public.doAfter(function(){
                 if(!private.keepGeneratingEnemies)
                     return;
 
                 FlyingEnemy.new(public
             var enemy = FlyingEnemy.new(public);*/
+
 
             public.every(checkEnemyCollisions);
             

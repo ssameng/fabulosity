@@ -26,7 +26,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
             projectileTrail: 'rainbowTrail',
             fireRate:.7,
             fireRateTimer:.7,
-            canFire: false
+            canFire: false,
+            lock: false
         };
 
         private.sfx = {
@@ -71,7 +72,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
         //direction false is left. call this based on cursors input in update
         public.walk = function (direction) {
-            //if (!private.walkable) return;
+            if (!private.walkable) return;
             switch(direction){
                 case globals.direction.stationary:
                     if (private.motor.currentSpeed < 0) {
@@ -106,10 +107,15 @@ define(['globals', 'projectile'], function (globals, Projectile) {
             }
             public.faceDirection(direction);
             public.body.velocity.x = private.motor.currentSpeed;
+
+            if (public.body.x >= 3083){
+                //LOCK THAT SHIT
+                public.walkable = false;
+            }
         };
 
         public.shoot = function(){
-            if (!private.attack.canFire) {
+            if (!private.attack.canFire || private.attack.lock) {
                 return;
             }
 
