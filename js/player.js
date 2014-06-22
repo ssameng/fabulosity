@@ -4,9 +4,13 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
     Player.projectileGroup;
 
-    Player.new = function (game) {
+    Player.playerGroup;
+
+    Player.new = function (game, endGameTrigger) {
         var public = game.phaser.add.sprite(3060, 32 * 4, 'playersprite');
         var private = {};
+
+        Player.playerGroup.add(public)
 
         game.phaser.physics.arcade.enableBody(public);
 
@@ -118,9 +122,19 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                 public.body.velocity.x = 0;
                 public.faceDirection(globals.direction.right);
                 public.animations.stop();
+
                 public.animations.frame = 4;
+
+                if(endGameTrigger)
+                    endGameTrigger();
+
             }
         };
+
+    public.lockShoot= function(unlock)
+    {
+        private.attack.lock = !unlock;
+    }
 
         public.shoot = function(){
             if (!private.attack.canFire || private.attack.lock) {
@@ -179,6 +193,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
 
         Player.projectileGroup = game.add.group();
+        Player.playerGroup = game.add.group();
     };
 
     return Player;

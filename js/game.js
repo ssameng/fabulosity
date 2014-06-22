@@ -46,7 +46,22 @@ define([
             BeefCake.preload(public);
         };
         
-        
+        private.finalSceneReached = false;
+
+        function onPlayerReachEnd()
+        {
+            private.keepGeneratingEnemies = false;
+            private.player.lockShoot();
+            public.moveCameraToSpot(finalScene);
+
+        };
+
+        function finalScene()
+        {
+            private.player.lockShoot(true);
+            private.finalSceneReached = true;
+            //unblockshoot
+        }
 
         function checkEnemyCollisions()
         {
@@ -64,11 +79,26 @@ define([
             public.phaser.physics.arcade.overlap(BeefCake.BeefCakeGroup,
                 Player.projectileGroup,
                  function(beefcake, playerBullet) {
-                    console.log("rainbow hit");
-                    //beefcake.onHit();
+                     if(private.finalSceneReached) {
+                         private.player.lockShoot();
+                         private.finalSceneReached = false;
+
+                         var dialog = public.levelscript.nextDialogue();
+
+                         if(dialog == null)
+                         console.log("hmm")
+                         var text = Text.new(public, dialog.text,
+                             private.player.body.x, private.player.body.y+private.player.height/2,
+                             { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
+          /*               //delay
+                         var text = Text.new(game, dialog.subtext,
+                             private.player.body.x, private.player.body.y+private.player.height/2,
+                             { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
+*/
+                     }
              });
 
-            public.phaser.physics.arcade.overlap( public.player, BeefCake.ProjectileGroup,
+            public.phaser.physics.arcade.overlap( private.player, BeefCake.ProjectileGroup,
                 function(playa, dumbell)
                 {
                     console.log("dumbell hit");
@@ -78,11 +108,40 @@ define([
 
         }
 
-        public.create = function () {
+        public.create = function () 
+        {
+            
+            // Load the Start Screen BG an buttob
+            public.phaser.load.image('startScreenBG', 'data/img/title-page/title-page.png');
+            public.phaser.load.image('startBTN', 'data/img/title-page/play-btn.png');
+           
+            public.startBTN = document.createElement('a');
+            public.startScreenBG = document.createElement('div');
+
+            public.startBTN.setAttribute('style', 'position:absolute;width:167px;height:85px;background:url("data/img/title-page/play-btn.png");bottom:159px;left:74px;');
+            public.startScreenBG.setAttribute('style', 'position:absolute;width:640px;height:480px;background:url("data/img/title-page/title-page.png");top:0;left:0px;');
+
+            public.startBTN.setAttribute('href', '#');
+
+            document.getElementById('game-div').appendChild(public.startScreenBG);
+            document.getElementById('game-div').appendChild(public.startBTN);
+
+            //Listen for a click and execute a click handler
+            public.startBTN.addEventListener('click', public.startGame, false);
+
+         }
+
+        public.startGame = function () {
+            
+            // destroy the play button
+            document.getElementById('game-div').removeChild(public.startBTN);
+            document.getElementById('game-div').removeChild(public.startScreenBG);
+
             public.phaser.physics.startSystem(Phaser.Physics.ARCADE);
-
+           
+            
             private.scene = Scene.new(public);
-
+            
             private.map = private.scene.loadMap('house');
             public.every(function() {
                 private.map.collide(public, private.player);
@@ -90,7 +149,7 @@ define([
 
 
             // Create player
-            private.player = Player.new(public);
+            private.player = Player.new(public, onPlayerReachEnd);
             private.input = InputKeys.new(public, private.player);
 
             //create beefcake
@@ -173,8 +232,14 @@ private.testText = Text.new(public, 'Test', 100, 0,
         };
 
 
-        public.moveCameraToSpot = function()
+        public.moveCameraToSpot = function(onComplete)
         {
+
+            public.phaser.camera.follow(null);
+            var tween =  public.phaser.add.tween(public.camera);
+            tween.to({x:3083 - 150},1500, Phaser.Easing.Linear.None,true)
+                tween.onComplete.add(onComplete);
+           // public.camera.setPosition(3083+50,0);
 
         };
 

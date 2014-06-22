@@ -56,19 +56,22 @@ define(["globals", "text"], function(globals, Text) {
             {text: "Thanks.",               subtext: "Fuck you too, faggot."},
         ];
         
-        private.dialogue.punkcount = private.dialogue.buffcount = 0;
+        private.dialogue.punkcount = 0;
+        private.dialogue.buffcount = 0;
         private.dialogue.turntrack = 1;
         public.nextDialogue = function(){
+            //console.log(private.dialogue.punkcount);
             if (private.dialogue.punkcount == private.dialogue.punk.length ||
-                private.dialogue.buffcount == private.dialogue.buff.length)
+                private.dialogue.buffcount == private.dialogue.buff.length) {
                 console.log("Can't return dialogue");
                 return;
-
+            }
             //return punk
             if (private.dialogue.turntrack == 1){
                 private.dialogue.turntrack = 2;
                 return private.dialogue.punk[private.dialogue.punkcount++];
             }
+
             //return buff
             else{
                 private.dialogue.turntrack = 1;
@@ -85,9 +88,11 @@ define(["globals", "text"], function(globals, Text) {
         public.displayNextBuff = function() {
         };
 
-        public.displayNextMessage = function(originX, originY, color, fadeDirection){
-            var testText = Text.new(game, public.getRandomSpeech(), originX, originY,
+        public.displayNextMessage = function(originX, originY, color, fadeDirection, message, bool){
+            message = message || public.getRandomSpeech();
+            var testText = Text.new(game, message, originX, originY,
                 { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:fadeDirection, fadeOffset:20, color:color });
+            return testText;
         };
 
         public.displayNextDialogue = function(){
