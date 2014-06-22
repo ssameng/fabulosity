@@ -60,6 +60,8 @@ define(["globals", "text"], function(globals, Text) {
         private.dialogue.buffcount = 0;
         private.dialogue.turntrack = 1;
         public.nextDialogue = function(){
+
+            var ans;
             //console.log(private.dialogue.punkcount);
             if (private.dialogue.punkcount == private.dialogue.punk.length ||
                 private.dialogue.buffcount == private.dialogue.buff.length) {
@@ -68,15 +70,27 @@ define(["globals", "text"], function(globals, Text) {
             }
             //return punk
             if (private.dialogue.turntrack == 1){
-                private.dialogue.turntrack = 2;
-                return private.dialogue.punk[private.dialogue.punkcount++];
+
+                if (private.dialogue.punkcount % 1 == .5){
+                    ans = private.dialogue.punk[private.dialogue.punkcount -.5].subtext;
+                    private.dialogue.turntrack = 2;
+                }
+                else ans = private.dialogue.punk[private.dialogue.punkcount].text;
+
+                private.dialogue.punkcount += .5;
             }
 
             //return buff
             else{
-                private.dialogue.turntrack = 1;
-                return private.dialogue.buff[private.dialogue.buffcount++];
+                if (private.dialogue.buffcount % 1 == .5){
+                    private.dialogue.turntrack = 1;
+                    ans = private.dialogue.buff[private.dialogue.buffcount -.5].subtext;
+                }
+                else ans = private.dialogue.buff[private.dialogue.buffcount].text;
+
+                private.dialogue.buffcount += .5;
             }
+            return ans;
         };
 
         public.buffEvent = function() {

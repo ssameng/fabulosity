@@ -31,7 +31,7 @@ define([
                 layers: null,
                 cursors: null,
                 player: null,
-                beefCake: null,
+                beefcake: null,
 
                 nextQueue: [],
                 everyQueue: []
@@ -46,7 +46,7 @@ define([
             BeefCake.preload(public);
         };
         
-        private.finalSceneReached = false;
+        public.finalSceneReached = false;
 
         function onPlayerReachEnd()
         {
@@ -59,8 +59,7 @@ define([
         function finalScene()
         {
             private.player.lockShoot(true);
-            private.finalSceneReached = true;
-            //unblockshoot
+            public.finalSceneReached = true;
         }
 
         function checkEnemyCollisions()
@@ -79,21 +78,25 @@ define([
             public.phaser.physics.arcade.overlap(BeefCake.BeefCakeGroup,
                 Player.projectileGroup,
                  function(beefcake, playerBullet) {
-                     if(private.finalSceneReached) {
+                     if(public.finalSceneReached) {
                          private.player.lockShoot();
-                         private.finalSceneReached = false;
+                         public.finalSceneReached = false;
 
                          var dialog = public.levelscript.nextDialogue();
 
-                         if(dialog == null)
-                         console.log("hmm")
-                         var text = Text.new(public, dialog.text,
-                             private.player.body.x, private.player.body.y+private.player.height/2,
-                             { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
-          /*               //delay
-                         var text = Text.new(game, dialog.subtext,
-                             private.player.body.x, private.player.body.y+private.player.height/2,
-                             { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
+                         var text = Text.new(public, dialog,
+                             private.player.x, private.player.y + private.player.height/2,
+                             { fadeSpeed: 1, fadeOutAfter:2, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
+                         public.doAfter(function() {beefcake.shoot();},2);
+                     //    beefcake.shoot();
+                         //delay
+/*
+                         dialog = public.levelscript.nextDialogue();
+                         public.doAfter(function() {
+                             var text = Text.new(game, dialog.subtext,
+                                 private.player.body.x, private.player.body.y + private.player.height / 2,
+                                 { fadeSpeed: 1, fadeOutAfter: .5, fadeDir: globals.direction.right, fadeOffset: 20, color: '#FFFFFF' });
+                         },2);
 */
                      }
              });
@@ -101,7 +104,12 @@ define([
             public.phaser.physics.arcade.overlap( private.player, BeefCake.ProjectileGroup,
                 function(playa, dumbell)
                 {
-                    console.log("dumbell hit");
+
+                    var dialog = public.levelscript.nextDialogue();
+                    Text.new(public, dialog.text,
+                        private.beefcake.body.x, private.beefcake.body.y,
+                        { fadeSpeed: 1, fadeOutAfter:2, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
+
                    //playa.hitWithDumbell();
              });
 
@@ -164,7 +172,7 @@ define([
             //create beefcake
             //3083 is the trigger
 
-            public.beefcake = BeefCake.new(public, 3352, 296);
+            private.beefcake = BeefCake.new(public, 3352, 296);
             public.levelscript = LevelScript.new(public, private.player);
 
 

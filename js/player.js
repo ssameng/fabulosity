@@ -1,4 +1,4 @@
-define(['globals', 'projectile'], function (globals, Projectile) {
+define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
 
     var Player = {};
 
@@ -6,8 +6,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
     Player.playerGroup;
 
-    Player.new = function (game, endGameTrigger) {
-        var public = game.phaser.add.sprite(3060, 32 * 4, 'playersprite');
+    Player.new = function (game, endGameTrigger, playerShotTrigger) {
+        var public = game.phaser.add.sprite(32*8, 32 * 8, 'playersprite');
         var private = {};
 
         Player.playerGroup.add(public)
@@ -142,7 +142,22 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                 return;
             }
 
-            game.levelscript.displayNextMessage(public.x, public.y-public.height/2, '#000000', globals.direction.left);
+            if(game.finalSceneReached)
+            {
+
+                var dialog = game.levelscript.nextDialogue();
+                if(!dialog)
+                {
+                    return;
+                }
+                var text = Text.new(game, dialog,
+                    public.x, public.y - public.height / 2,
+                    { fadeSpeed: 1, fadeOutAfter:1, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
+            }
+            else {
+                game.levelscript.displayNextMessage(public.x, public.y - public.height / 2, '#000000', globals.direction.left);
+            }
+
             private.sfx.shoot.play();
             var projectile = Projectile.new(game, Player.projectileGroup,
                 public.body.x, public.body.y, private.direction, 'rainbowflicker');
