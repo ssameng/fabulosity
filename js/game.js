@@ -170,6 +170,12 @@ private.testText = Text.new(public, 'Test', 100, 0,
             setTimeout(function() {public.next(cb)}, secs*1000);
         };
 
+
+        public.moveCameraToSpot = function()
+        {
+
+        };
+
         return public;
     };
 

@@ -58,6 +58,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
         //call this during update based on cursors
         public.jump = function () {
+            if (!private.walkable) return;
             if (public.body.onFloor()) {
                 private.motor.jumping = true;
                 private.motor.jumpPack = private.motor.jumpPackFull;
