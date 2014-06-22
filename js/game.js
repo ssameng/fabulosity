@@ -88,13 +88,13 @@ define([
 
                          var text = Text.new(public, dialog,
                              private.player.x, private.player.y + private.player.height/2,
-                             { fadeSpeed: 1, fadeOutAfter:2, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
+                             { fadeSpeed: 0.5, fadeOutAfter:2, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
                          public.doAfter(function() {
 
                              var dialog = public.levelscript.nextDialogue();
                              Text.new(public, dialog,
                                  private.beefcake.body.x, private.beefcake.body.y,
-                                 { fadeSpeed: 1, fadeOutAfter:3, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
+                                 { fadeSpeed: 0.5, fadeOutAfter:3, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
                              beefcake.shoot();
 
                          },3.5);
@@ -120,7 +120,7 @@ define([
                         var dialog = public.levelscript.nextDialogue();
                         Text.new(public, dialog,
                             private.beefcake.body.x, private.beefcake.body.y + 100,
-                            { fadeSpeed: 1, fadeOutAfter: 3, fadeDir: globals.direction.right, fadeOffset: 20, color: '#FFFFFF' });
+                            { fadeSpeed: 0.5, fadeOutAfter: 3, fadeDir: globals.direction.right, fadeOffset: 20, color: '#FFFFFF' });
 
                         private.player.lockShoot(true);
                     }
@@ -190,8 +190,8 @@ define([
             public.levelscript = LevelScript.new(public, private.player);
 
 
-private.testText = Text.new(public, 'Test', 100, 0,
-                { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
+//private.testText = Text.new(public, 'Test', 100, 0,
+  //              { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
             private.keepGeneratingEnemies = true;
 
             public.doAfter(enemyFactory, 3);
