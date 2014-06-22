@@ -31,6 +31,7 @@ define(["globals"], function(globals) {
             //action/shoot and shit
             if (private.attack.isDown){
                 player.shoot();
+                game.levelscript.displayNextMessage(player.x, player.y, '#000000', globals.direction.left);
             }
         };
 

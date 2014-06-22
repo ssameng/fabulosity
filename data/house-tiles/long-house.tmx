@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="100" height="15" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="113" height="15" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="bedroom-roman" tilewidth="32" tileheight="32">
   <image source="bedroom-roman.png" width="224" height="256"/>
  </tileset>
  <tileset firstgid="57" name="collisions" tilewidth="32" tileheight="32">
   <image source="../img/map/metatiles32x32.png" width="160" height="32"/>
  </tileset>
- <layer name="Background" width="100" height="15">
+ <layer name="Background" width="113" height="15">
   <data encoding="base64" compression="zlib">
-   eJztl00PgyAMhjl5JttlJiQ7cHDj///AYbImb5oq6CYI9vAkAn5gH1rRGmOsoijd4CJDBrXneRXWHEyRV6YvdXa8j63UfpfWmGMWhDg+dvBPj0dRO94p/MK8e/VxVqScUNqEcusuUHtunPAld894RsbIcyfjyn1pb+ZN2fzkNRnbVGv5vjGnBpeo0+Ri7/co15tdcIJ9HmLnhLgOMEbX4nnS+TxPMKYe4P0pH6n/ABx3Qt8k3OP2o4sWoPqFnsnjmznFYxrDtRKM7Bjb0hpxAOYBd9i7iy35m8rtEs+uHSvlenwAkgZUdQ==
+   eJztl8EOgyAMhnva2WyXmZDswMHN93/AYbImP01RhgpGe/gSg4jSr1LoiKgzDMPYEBe4ZdD6O400c96GwDvTsXk+psN/aT2XKzDFeVRi/yxgS/d70Tree+ATczWHcZ4fEe3fuwJncrhFHB4Krb9NMv7gvfZVHPaBVyH9zLi8p/VUdx3AelHqEMfg2iH36Dk1pUbdYX+l9TXXdZfwiG0eYucoXbsdPIv9tP4lc5LnZfTgAdm+5HDpnIb3ndI2KGPcV/o7K7weYz5xvnwozh285nuYkyPFTmQepnLRAfi/Se/mT6e0rsh1p8a7W8fKMNbwBWNQYKU=
   </data>
  </layer>
- <layer name="Furniture" width="100" height="15">
+ <layer name="Furniture" width="113" height="15">
   <data encoding="base64" compression="zlib">
+<<<<<<< HEAD
    eJztlcEKgzAQRAOlB71War3Uttge25P+/6d1BYUgG5Ml29jIPBjUOM4KGzbGAAAAAADsg+OfeXLl6nl/CMjoSE/SK9Jje43Da+eEZNn8qo+aub5+lIq19ohkn7moSKcAGeaZ48OsXSat4fOEZOTI2bqvlLN70qCcqUGduF7HrPn+IbYXrdD7iKy3Fa4zc5wD70ncTJBkjr1ohBkxtBtJyo10X6y5zsx5FszX5XccBZOZuhe5k3I/AJCSL1KWDYg=
+=======
+   eJztls0KgCAQhIUIqmvRz6U/qvd/xIw6SCiubJnhfDBgOs0KuweFAAAAAAAAMZAG5omJ3nKeEDIWqVVqY3pUrzB41RxKFpe35uXJXFsPiwdrgROXeTZRSZUECc03lfYSx0PJiIVaWVef3SJ8Gs/1Fs2e7Q7c/g2O3plZ709Q3g3czKN/3Qt1TAwfyQej1HTbM70bDm+m6P6fjlyT6bt/MRL63AEQAjvk3AuW
+>>>>>>> cb89333d89dc9e7c813011f060d1e70f00591616
   </data>
  </layer>
- <layer name="Lights" width="100" height="15">
+ <layer name="Lights" width="113" height="15">
   <data encoding="base64" compression="zlib">
-   eJztzrEJACAMBEAbN1H3H1ELLSUWgiB38EXIB5ISAAAQya8f+FwZqSPtsL+6Zc67u2gPAAA3dT6+AVQ=
+   eJztzrEJACAMBEAbN1H3H1ELrUS0U+EOvgj5QEIAAAD4Q7z9AJPUklvKYX90U59Xd7s9AADwrgr/zQFU
   </data>
  </layer>
- <layer name="collision" width="100" height="15">
+ <layer name="collision" width="113" height="15">
   <data encoding="base64" compression="zlib">
+<<<<<<< HEAD
    eJztllEOwCAIQ7nW4u5/rmW/ZJkgoA3pS/xZEAt1qggh61zOQWrx9Jie1ZPdP/phZ8d+9p5/1QMZNH0WPZGY03shY7/MYtA8/WNWs/furIiN5urkBypD+p7P6Bo1Izhf14vUAyQtFqJevHj+pTthvRVtGXmy0TkzvPCuj/qG+dKpv1lrsuTXOXd7cZLT79kO9zDpywN3pDdG
+=======
+   eJztkkEOgCAMBPutRv//LuNBDo1GkMpSuptMvGBlnaqIKCGEOFIb9D1Jv8OaoLtkxTPoLhnIFPS/Rjl8OxNpD7LuOh3G6nhlkzW7ZnHY42/2vit2svHw18I+plYJ0uEfe2BnjvYXjZbcvfM048u31DzP0B8hZAYOkxb8Uw==
+>>>>>>> cb89333d89dc9e7c813011f060d1e70f00591616
   </data>
  </layer>
 </map>

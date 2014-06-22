@@ -1,13 +1,17 @@
-define([], function() {
-    var textStyle = {
-        font: '40px silkscreennormal',
-        fill: '#fff',
-        align: 'left'
-    };
+define(["globals"], function(globals) {
+
 
     var Text = {};
     Text.new = function(game, text, x, y, options) {
-        var public = game.phaser.add.text(x, y, text, textStyle);
+        var textStyle = {
+            font: '40px silkscreennormal',
+            fill: options.color || '#fff',
+            align: 'left'
+        };
+
+       
+
+            var public = game.phaser.add.text(x, y, text, textStyle);
             private = {};
 
         public.alpha=0;
@@ -20,7 +24,21 @@ define([], function() {
         {
             game.doAfter(function (){
                 game.phaser.add.tween(public).to( { alpha: 0 }, fadeSpeed*1000, Phaser.Easing.Linear.None, true);
+
+                if(options.fadeDir)
+                {
+                    switch (options.fadeDir)
+                    {
+                        case globals.direction.down:
+                            game.phaser.add.tween(public).to( { y: y+ options.fadeOffset}, fadeSpeed*1000, Phaser.Easing.Linear.None, true);
+
+                    }
+                }
+
             }, options.fadeOutAfter);
+
+
+
         }
         return public;
     };
