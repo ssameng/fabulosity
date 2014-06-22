@@ -83,11 +83,40 @@ define([
 
         }
 
-        public.create = function () {
+        public.create = function () 
+        {
+            
+            // Load the Start Screen BG an buttob
+            public.phaser.load.image('startScreenBG', 'data/img/title-page/title-page.png');
+            public.phaser.load.image('startBTN', 'data/img/title-page/play-btn.png');
+           
+            public.startBTN = document.createElement('a');
+            public.startScreenBG = document.createElement('div');
+
+            public.startBTN.setAttribute('style', 'position:absolute;width:167px;height:85px;background:url("data/img/title-page/play-btn.png");bottom:159px;left:74px;');
+            public.startScreenBG.setAttribute('style', 'position:absolute;width:640px;height:480px;background:url("data/img/title-page/title-page.png");top:0;left:0px;');
+
+            public.startBTN.setAttribute('href', '#');
+
+            document.getElementById('game-div').appendChild(public.startScreenBG);
+            document.getElementById('game-div').appendChild(public.startBTN);
+
+            //Listen for a click and execute a click handler
+            public.startBTN.addEventListener('click', public.startGame, false);
+
+         }
+
+        public.startGame = function () {
+            
+            // destroy the play button
+            document.getElementById('game-div').removeChild(public.startBTN);
+            document.getElementById('game-div').removeChild(public.startScreenBG);
+
             public.phaser.physics.startSystem(Phaser.Physics.ARCADE);
-
+           
+            
             private.scene = Scene.new(public);
-
+            
             private.map = private.scene.loadMap('house');
             public.every(function() {
                 private.map.collide(public, private.player);
