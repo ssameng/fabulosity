@@ -1,6 +1,6 @@
 define([], function() {
     var textStyle = {
-        font: '20px silkscreennormal',
+        font: '20px Silkscreen',
         fill: '#fff',
         align: 'left'
     };
