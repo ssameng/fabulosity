@@ -74,7 +74,7 @@ define([
             private.input = InputKeys.new(public, private.player);
             private.testText = Text.new(public, 'Test', 0, 0, { fadeSpeed: 100 });
             var enemy = FlyingEnemy.new(public);
-
+            public.doAfter(function(){FlyingEnemy.new(public)}, 5);
             public.every(checkEnemyCollisions);
             
             public.levelscript = LevelScript.new(public, private.player);
@@ -114,6 +114,10 @@ define([
 
         public.every = function(cb) {
             private.everyQueue.push(cb);
+        };
+
+        public.doAfter = function(cb, secs){
+            setTimeout(function() {public.next(cb)}, secs*1000);
         };
 
         return public;
