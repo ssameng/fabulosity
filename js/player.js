@@ -7,7 +7,7 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
     Player.playerGroup;
 
     Player.new = function (game, endGameTrigger, playerShotTrigger) {
-        var public = game.phaser.add.sprite(3070, 32 * 6, 'playersprite');
+        var public = game.phaser.add.sprite(32*8, 32 * 6, 'playersprite');
         var private = {};
 
         Player.playerGroup.add(public)
