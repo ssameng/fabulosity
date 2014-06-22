@@ -22,7 +22,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         };
 
         private.attack = {
-            projectileSprite: 'rainbow0',
+            projectileSprite: 'rainbowflicker',
             projectileTrail: 'rainbowTrail',
             fireRate:.7,
             fireRateTimer:.7,
@@ -72,12 +72,12 @@ define(['globals', 'projectile'], function (globals, Projectile) {
             switch(direction){
                 case globals.direction.stationary:
                     if (private.motor.currentSpeed < 0) {
-                        private.motor.currentSpeed += private.motor.acceleration;
+                        private.motor.currentSpeed += private.motor.acceleration * 2;
                         if (private.motor.currentSpeed > 0)
                             private.motor.currentSpeed = 0;
                     }
                     else if (private.motor.currentSpeed > 0) {
-                        private.motor.currentSpeed -= private.motor.acceleration;
+                        private.motor.currentSpeed -= private.motor.acceleration * 2;
                         if (private.motor.currentSpeed < 0)
                             private.motor.currentSpeed = 0;
                     }
@@ -110,7 +110,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
             }
             private.sfx.shoot.play();
             var projectile = Projectile.new(game, Player.projectileGroup,
-                public.body.x, public.body.y, private.direction, private.attack.projectileSprite);
+                public.body.x, public.body.y, private.direction, 'rainbowflicker');
             private.attack.fireRateTimer = private.attack.fireRate;
             private.attack.canFire = false;
             return projectile;
@@ -131,6 +131,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         // Load the main player spritesheet
         game.load.spritesheet('gripe_run_right',
             '/data/img/sprite/gripe_run_right.png', 64, 64);
+
 
 //        for(var i = 0; i < 2; i++){
 //            game.load.audio('rainbowelectric'+i, '/data/sfx/rainbowelectric'+i+'.wav');

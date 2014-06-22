@@ -24,9 +24,10 @@ define([
             };
 
         public.preload = function (game) {
-            Player.preload(public);
+
             Scene.preload(public);
             FlyingEnemy.preload(public);
+            Player.preload(public);
             Projectile.preload(public);
         };
 
@@ -48,7 +49,7 @@ define([
             public.phaser.physics.startSystem(Phaser.Physics.ARCADE);
 
             private.scene = Scene.new(public);
-            private.map = private.scene.loadMap('house');//'area01');
+            private.map = private.scene.loadMap('area01');//'area01');
             public.every(function() {
                 private.map.collide(public, private.player);
             });
