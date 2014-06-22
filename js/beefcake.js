@@ -16,11 +16,13 @@ define(["globals", 'projectile'],function(globals, Projectile){
         public.anchor.setTo(0.5, 0.5);
         // width, height, translateX, translateY
         game.physics.arcade.enableBody(public);
+        public.body.setSize(152, 160, 0, 0);
+
 
         //public.body.gravity.y = globals.GRAVITY;
         public.body.bounce.y = 0;
         public.body.linearDamping = 1;
-        public.body.collideWorldBounds = true;
+        //public.body.collideWorldBounds = true;
         private.fireRateTimer = .5;
         private.canFire = true;
 

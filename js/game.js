@@ -60,19 +60,21 @@ define([
                     enemy.collidedWithPlayer();
             });
 
-            /*
+
             public.phaser.physics.arcade.overlap(private.beefCake,
                 Player.projectileGroup,
                  function(beefcake, playerBullet) {
-                    beefcake.onHit();
-                });
+                    console.log("rainbow hit");
+                    //beefcake.onHit();
+             });
 
-            public.phaser.physics.arcade.overlap( public.player, BeefCake.dumbBellGroup,
+            public.phaser.physics.arcade.overlap( public.player, BeefCake.ProjectileGroup,
                 function(playa, dumbell)
                 {
-                   playa.hitWithDumbell();
-                });
-*/
+                    console.log("dumbell hit");
+                   //playa.hitWithDumbell();
+             });
+
 
         }
 
