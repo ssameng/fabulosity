@@ -38,14 +38,19 @@ define([
             };
 
         public.preload = function (game) {
+            public.load.image('scanlines', 'data/img/sprite/scanlines.png')
+
+
             Scene.preload(public);
             Player.preload(public);
             Player.preload(public);
             Projectile.preload(public);
             FlyingEnemy.preload(public);
             BeefCake.preload(public);
+
         };
-        
+
+        public.scanlines;
         public.finalSceneReached = false;
 
         function onPlayerReachEnd()
@@ -134,7 +139,11 @@ define([
 
         public.create = function () 
         {
-            
+
+            public.scanlines = public.add.sprite(0, 0, 'scanlines');
+            //public.scanlines.scale = {x: 5, y: 5};
+            public.scanlines.alpha = .1;
+
             // Load the Start Screen BG an buttob
             //public.phaser.load.image('startScreenBG', 'data/img/title-page/title-page.png');
             //public.phaser.load.image('startBTN', 'data/img/title-page/play-btn.png');
@@ -222,6 +231,8 @@ define([
            }
 
         public.update = function () {
+
+
             var ncb;
             while (private.nextQueue.length > 0) {
                 ncb = private.nextQueue.pop();
