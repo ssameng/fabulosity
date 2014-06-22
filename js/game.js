@@ -74,8 +74,20 @@ define([
             private.input = InputKeys.new(public, private.player);
 
             private.testText = Text.new(public, 'Test', 100, 0, { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
-            var enemy = FlyingEnemy.new(public);
-            public.doAfter(function(){FlyingEnemy.new(public)}, 5);
+
+            private.keepGeneratingEnemies = true;
+
+            public.doAfter(enemyFactory, 1);
+            /*set up generator
+
+
+
+            public.doAfter(function(){
+                if(!private.keepGeneratingEnemies)
+                    return;
+
+                FlyingEnemy.new(public
+            var enemy = FlyingEnemy.new(public);*/
 
             public.every(checkEnemyCollisions);
             
@@ -83,6 +95,14 @@ define([
 
             public.camera.follow(private.player, Phaser.Camera.FOLLOW_TOPDOWN);
         };
+
+           function enemyFactory()
+           {
+               if(!private.keepGeneratingEnemies)
+                   return;
+               FlyingEnemy.new(public, 640+ private.player.x, Math.random()*public.phaser.world.height);
+               public.doAfter(enemyFactory, 1);
+           }
 
         public.update = function () {
             var ncb;
@@ -126,6 +146,7 @@ define([
         };
 
         public.doAfter = function(cb, secs){
+           // public.phaser.time.events.add(Phaser.Timer.SECOND * secs, cb);
             setTimeout(function() {public.next(cb)}, secs*1000);
         };
 

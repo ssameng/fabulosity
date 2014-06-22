@@ -31,6 +31,7 @@ define(["globals"], function(globals) {
                     {
                         case globals.direction.down:
                             game.phaser.add.tween(public).to( { y: y+ options.fadeOffset}, fadeSpeed*1000, Phaser.Easing.Linear.None, true);
+
                     }
                 }
 

@@ -69,7 +69,7 @@ define(["globals"],function(Globals){
 
         public.update = function()
         {
-            public.body.x+=1;
+            public.body.x-=1;
 
 //            if(game.phaser.physics.overlap())
         };
