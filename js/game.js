@@ -73,8 +73,8 @@ define([
             private.player = Player.new(public);
             private.input = InputKeys.new(public, private.player);
 
-            private.testText = Text.new(public, 'Test', 100, 0, { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
-
+private.testText = Text.new(public, 'Test', 100, 0,
+                { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
             private.keepGeneratingEnemies = true;
 
             public.doAfter(enemyFactory, 1);
@@ -88,12 +88,12 @@ define([
 
                 FlyingEnemy.new(public
             var enemy = FlyingEnemy.new(public);*/
-
+            
             public.every(checkEnemyCollisions);
             
             public.levelscript = LevelScript.new(public, private.player);
 
-            public.camera.follow(private.player, Phaser.Camera.FOLLOW_TOPDOWN);
+            public.camera.follow(private.player, Phaser.Camera.FOLLOW_PLATFORMER);
         };
 
            function enemyFactory()
@@ -121,9 +121,6 @@ define([
 
         public.start = function() {
 
-            //resize game if window is resized
-            window.addEventListener('resize', function(event){resizeGame();});
-            var resizeGame = function () {game.stage.scale.refresh();}
 
 
             var transparent = false;

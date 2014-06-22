@@ -29,14 +29,14 @@ define(["globals"],function(Globals){
 
         //particle emitter
         //public.animations.frame = Math.floor(Math.random() * 12);
-        emitter = game.add.emitter(0, originX, originY);
-        emitter.makeParticles('squareparticle0');
-        //	false means don't explode all the sprites at once, but instead release at a rate of 20 particles per frame
-        //	The 5000 value is the lifespan of each particle
-        emitter.setXSpeed(-50, -50);
-        emitter.start(false, 5000, 500);
-
-        public.addChild(emitter);
+//        emitter = game.add.emitter(0, originX, originY);
+//        emitter.makeParticles('squareparticle0');
+//        //	false means don't explode all the sprites at once, but instead release at a rate of 20 particles per frame
+//        //	The 5000 value is the lifespan of each particle
+//        emitter.setXSpeed(-50, -50);
+//        emitter.start(false, 5000, 500);
+//
+//        public.addChild(emitter);
 
 
         public.setHitPoints= function(points)
