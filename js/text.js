@@ -1,4 +1,4 @@
-define([], function() {
+define(["globals"], function(globals) {
     var textStyle = {
         font: '40px silkscreennormal',
         fill: '#fff',
@@ -20,7 +20,20 @@ define([], function() {
         {
             game.doAfter(function (){
                 game.phaser.add.tween(public).to( { alpha: 0 }, fadeSpeed*1000, Phaser.Easing.Linear.None, true);
+
+                if(options.fadeDir)
+                {
+                    switch (options.fadeDir)
+                    {
+                        case globals.direction.down:
+                            game.phaser.add.tween(public).to( { x: x- options.fadeOffset}, fadeSpeed*1000, Phaser.Easing.Linear.None, true);
+                    }
+                }
+
             }, options.fadeOutAfter);
+
+
+
         }
         return public;
     };

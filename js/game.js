@@ -77,6 +77,7 @@ define([
             var enemy = FlyingEnemy.new(public, 200, 200);
             public.doAfter(function(){FlyingEnemy.new(public, 200, 200)}, 5);
 
+
             public.every(checkEnemyCollisions);
             
             public.levelscript = LevelScript.new(public, private.player);
