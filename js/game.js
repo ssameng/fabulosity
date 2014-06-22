@@ -73,8 +73,8 @@ define([
             private.player = Player.new(public);
             private.input = InputKeys.new(public, private.player);
             private.testText = Text.new(public, 'Test', 0, 0, { fadeSpeed: 100 });
-            var enemy = FlyingEnemy.new(public);
-            public.doAfter(function(){FlyingEnemy.new(public)}, 5);
+            var enemy = FlyingEnemy.new(public, 32 * 1, 32*8);
+            public.doAfter(function(){FlyingEnemy.new(public, 32 * 1, 32*4)}, 5);
             public.every(checkEnemyCollisions);
             
             public.levelscript = LevelScript.new(public, private.player);

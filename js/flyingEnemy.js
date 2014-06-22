@@ -4,11 +4,15 @@ define(["globals"],function(Globals){
 
     Enemy.enemyGroup;
 
-    Enemy.new=function(globalGame)
+    Enemy.new = function(globalGame, originX, originY)
     {
 
+        //default parameters
+        originX = originX || 0;
+        originY = originY || 0;
+
         var game = globalGame.phaser;
-        var public =game.add.sprite(32 * 1, 32*4, 'wheelie_right');
+        var public =game.add.sprite(originX, originY, 'wheelie_right');
         Enemy.enemyGroup.add(public);
         var private = {};
 
@@ -17,6 +21,18 @@ define(["globals"],function(Globals){
         public.body.setSize(40, 56, 15, 24);
 
         private.hitPoints = 1;
+
+
+        //particle emitter
+        //public.animations.frame = Math.floor(Math.random() * 12);
+        emitter = game.add.emitter(0, originX, originY);
+        emitter.makeParticles('squareparticle0');
+        //	false means don't explode all the sprites at once, but instead release at a rate of 20 particles per frame
+        //	The 5000 value is the lifespan of each particle
+        emitter.setXSpeed(-50, -50);
+        emitter.start(false, 5000, 500);
+
+        public.addChild(emitter);
 
 
         public.setHitPoints= function(points)
@@ -59,7 +75,8 @@ define(["globals"],function(Globals){
 
     Enemy.preload = function(game)
     {
-          game.load.spritesheet('wheelie_right', 'data/img/sprite/wheelie_right.png', 64, 64);
+        game.load.spritesheet('wheelie_right', 'data/img/sprite/wheelie_right.png', 64, 64);
+        Globals.randomizer.preload(game, 'squareparticle', '.png', 0, 3, Globals.fileType.image);
         Enemy.enemyGroup = game.add.group();
 
     };
