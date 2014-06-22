@@ -31,6 +31,7 @@ define([
                 layers: null,
                 cursors: null,
                 player: null,
+                beefCake: null,
 
                 nextQueue: [],
                 everyQueue: []
@@ -59,6 +60,19 @@ define([
                     enemy.collidedWithPlayer();
             });
 
+            public.phaser.physics.arcade.overlap(private.beefCake,
+                Player.projectileGroup,
+                 function(beefcake, playerBullet) {
+                    beefcake.onHit();
+                });
+
+            public.phaser.physics.arcade.overlap( public.player, BeefCake.dumbBellGroup,
+                function(playa, dumbell)
+                {
+                   playa.hitWithDumbell();
+                });
+
+
         }
 
         public.create = function () {
@@ -78,7 +92,7 @@ define([
 
             //create beefcake
             //3083 is the trigger
-            public.beefcake = BeefCake.new(public, 3352, 296);
+            private.beefcake = BeefCake.new(public, 3352, 296);
 
 private.testText = Text.new(public, 'Test', 100, 0,
                 { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
