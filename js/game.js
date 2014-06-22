@@ -6,8 +6,15 @@ define([
     'inputkeys',
     'flyingEnemy',
     'projectile'
-], function(Player, domready, Scene, globals, InputKeys, FlyingEnemy, Projectile) {
-
+], function(
+    Player,
+    domready,
+    Scene,
+    globals,
+    InputKeys,
+    FlyingEnemy,
+    Projectile
+) {
     var Game = {};
     Game.new = function() {
         var public = {},
@@ -33,13 +40,13 @@ define([
 
         function checkEnemyCollisions()
         {
-            public.phaser.physics.arcade.overlap(Player.projectileGroup, FlyingEnemy.enemyGroup,function(playa, enemy)
-            {
+            public.phaser.physics.arcade.overlap(Player.projectileGroup,
+                    FlyingEnemy.enemyGroup, function(playa, enemy) {
                 enemy.removeHitPoints(100);
             });
 
-            public.phaser.physics.arcade.overlap(private.player, FlyingEnemy.enemyGroup,function(playa, enemy)
-            {
+            public.phaser.physics.arcade.overlap(private.player,
+                    FlyingEnemy.enemyGroup, function(playa, enemy) {
                 //enemy.collidedWithPlayer();
             });
 
@@ -49,7 +56,8 @@ define([
             public.phaser.physics.startSystem(Phaser.Physics.ARCADE);
 
             private.scene = Scene.new(public);
-            private.map = private.scene.loadMap('area01');//'area01');
+
+            private.map = private.scene.loadMap('house');
             public.every(function() {
                 private.map.collide(public, private.player);
             });
