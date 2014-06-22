@@ -78,6 +78,8 @@ define([
             public.every(checkEnemyCollisions);
             
             public.levelscript = LevelScript.new(public, private.player);
+
+            public.camera.follow(private.player, Phaser.Camera.FOLLOW_PLATFORMER);
         };
 
         public.update = function () {
@@ -96,15 +98,20 @@ define([
         };
 
         public.start = function() {
+
+            //resize game if window is resized
+            window.addEventListener('resize', function(event){resizeGame();});
+            var resizeGame = function () {game.stage.scale.refresh();}
+
+
             var transparent = false;
-            var antialias = true;
+            var antialias = false;
             public.phaser = new Phaser.Game(
                 640, 480,
                 Phaser.AUTO,
                 'game-div',
                 public,
-                transparent,
-                antialias
+                transparent
             );
         };
 
@@ -125,3 +132,5 @@ define([
 
     return Game;
 });
+
+
