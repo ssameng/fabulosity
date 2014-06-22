@@ -49,6 +49,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         public.body.linearDamping = 1;
         public.body.collideWorldBounds = true;
 
+        private.walkable = true;
+
 
         //get a random shoot noise
 
@@ -69,7 +71,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
         //direction false is left. call this based on cursors input in update
         public.walk = function (direction) {
-            if (!private.walkable) return;
+            //if (!private.walkable) return;
             switch(direction){
                 case globals.direction.stationary:
                     if (private.motor.currentSpeed < 0) {
@@ -128,11 +130,11 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         public.faceDirection = function(direction){
             switch (direction){
                 case globals.direction.left:
-                    public.scale.x = private.scalex;
+                    public.scale.x = -private.scalex;
                     private.direction = direction;
                     break;
                 case globals.direction.right:
-                    public.scale.x = -private.scalex;
+                    public.scale.x = private.scalex;
                     private.direction = direction;
                     break;
                 default:
