@@ -10,19 +10,20 @@ define([], function() {
         var public = {},
             private = {};
 
-        private.t = game.phaser.add.text(x, y, text, textStyle);
+        private = game.phaser.add.text(x, y, text, textStyle);
+        private.alpha = 0;
 
-        var fadeSpeed = options.fadeSpeed || 10;
-        if (fadeSpeed > 0) {
-            private.t.alpha = 0;
-            // TODO unregister this cb once it's done
-            game.every(function() {
-                if (private.t.alpha < 1) {
-                    private.t.alpha += options.fadeSpeed / 1000;
-                }
-            });
-        }
 
+        var fadeSpeed = options.fadeSpeed || 2;
+        game.phaser.add.tween(public).to( { alpha: 1 }, fadeSpeed, Phaser.Easing.Linear.None, true,0,false);
+
+/*
+        if (options.fadeOutAfter)
+        {
+            game.doAfter(function (){
+                game.phaser.add.tween(public).to( { alpha: 0 }, fadeSpeed*1000, Phaser.Easing.Linear.None, true);
+            }, options.fadeOutAfter);
+        }(*/
         return public;
     };
 
