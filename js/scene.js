@@ -1,12 +1,5 @@
 define(['map'], function(Map) {
     var scenes = {
-        area01: {
-            tiles: {
-                name: 'area01_level_tiles',
-                file: '/data/map/area01.json',
-                image: '/data/img/map/area01_level_tiles.png'
-            }
-        },
         house: {
             tiles: {
                 name: 'bedroom-roman',
