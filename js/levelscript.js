@@ -6,9 +6,36 @@ define(["globals", "text"], function(globals, Text) {
         var public = {},
             private = {};
 
-        
-        
         private.dialogue = {};
+        private.dialogue.shoot = [
+            "Nah.",
+            "No.",
+            "Stop talking.",
+            "I don't care.",
+            "Go away.",
+            "Uhuh.",
+            "Whatever.",
+            "Fuck you.",
+            "...",
+            "Sure.",
+            "Silence.",
+            "Nope.",
+            "Right, right.",
+            "Please.",
+            "Have a rainbow!",
+            ":)",
+            "^u^",
+            "lol",
+            "k"
+        ];
+
+        public.getRandomSpeech = function(){
+            return private.dialogue.shoot[Math.floor(Math.random()*private.dialogue.shoot.length)];
+        };
+
+
+        
+
         private.dialogue.punk = [
             {text: "Hello",                 subtext: "Hello"},
             {text: "What's up?",            subtext: "What's up?"},
@@ -55,8 +82,8 @@ define(["globals", "text"], function(globals, Text) {
         };
 
         public.displayNextMessage = function(originX, originY, color, fadeDirection){
-            var testText = Text.new(game, 'Test', originX, originY,
-                { fadeSpeed: 1, fadeOutAfter:3, fadeDir:fadeDirection, fadeOffset:10, color:color });
+            var testText = Text.new(game, public.getRandomSpeech(), originX, originY,
+                { fadeSpeed: 1, fadeOutAfter:.5, fadeDir:fadeDirection, fadeOffset:20, color:color });
         };
 
         return public;

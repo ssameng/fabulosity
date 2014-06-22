@@ -112,6 +112,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
             if (!private.attack.canFire) {
                 return;
             }
+
+            game.levelscript.displayNextMessage(public.x, public.y-public.height/2, '#000000', globals.direction.left);
             private.sfx.shoot.play();
             var projectile = Projectile.new(game, Player.projectileGroup,
                 public.body.x, public.body.y, private.direction, 'rainbowflicker');
