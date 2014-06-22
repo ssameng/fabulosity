@@ -60,6 +60,7 @@ define([
                     enemy.collidedWithPlayer();
             });
 
+            /*
             public.phaser.physics.arcade.overlap(private.beefCake,
                 Player.projectileGroup,
                  function(beefcake, playerBullet) {
@@ -71,7 +72,7 @@ define([
                 {
                    playa.hitWithDumbell();
                 });
-
+*/
 
         }
 
