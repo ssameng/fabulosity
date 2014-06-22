@@ -15,14 +15,22 @@ define(["globals"],function(globals) {
         damage = damage || 0;
         switch(direction){
             case globals.direction.left:
-                public.body.velocity.x = -200;
+                public.body.velocity.x = -700;
                 break;
             case globals.direction.right:
-                public.body.velocity.x = 200;
+                public.body.velocity.x = 700;
                 break;
         }
+        
         var tweenData = 0;
-        game.add.tween(public.scale).to({x: 10.0, y: 1.0}, 1000, Phaser.Easing.Sinusoidal.InOut, true);
+
+        public.alpha = 0;
+        game.add.tween(public).to({alpha: 1}, 200, Phaser.Easing.Sinusoidal.InOut, true)
+        .to({alpha: 1}, 1000, Phaser.Easing.Sinusoidal.InOut, true).start();
+        
+        public.scale = {x: 1, y:1};
+        game.add.tween(public.scale).to({x: 10.0, y: 1.0}, 1000, Phaser.Easing.Sinusoidal.InOut, true)
+        .to({ x: 0, y: 1 }, 1000, Phaser.Easing.Sinusoidal.InOut, true).start();
         //var tween = game.add.tween(tweenData).to(100, 2000, Phaser.Easing.Sinusoidal.InOut);
 
 

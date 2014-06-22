@@ -7,6 +7,7 @@ define([
     'flyingEnemy',
     'projectile',
     'text',
+    'levelscript'
 ], function(
     Player,
     domready,
@@ -15,7 +16,8 @@ define([
     InputKeys,
     FlyingEnemy,
     Projectile,
-    Text
+    Text,
+    LevelScript
 ) {
     var Game = {};
     Game.new = function() {
@@ -39,6 +41,8 @@ define([
             Player.preload(public);
             Projectile.preload(public);
         };
+        
+        
 
         function checkEnemyCollisions()
         {
@@ -72,6 +76,8 @@ define([
             var enemy = FlyingEnemy.new(public);
 
             public.every(checkEnemyCollisions);
+            
+            public.levelscript = LevelScript.new(public, private.player);
         };
 
         public.update = function () {

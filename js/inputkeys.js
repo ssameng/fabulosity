@@ -10,7 +10,8 @@ define(["globals"], function(globals) {
 
         //bindings
         private.jump = game.phaser.input.keyboard.addKey(Phaser.Keyboard.Z);
-        private.attack = game.phaser.input.keyboard.addKey(Phaser.Keyboard.X);
+        private.attack = game.phaser.input.keyboard.addKey(Phaser.Keyboard.X);  
+        
 
         //call this in update to handle game.phaser input
         public.update = function(){
@@ -27,6 +28,7 @@ define(["globals"], function(globals) {
             }
             else player.walk(globals.direction.stationary);
 
+            //action/shoot and shit
             if (private.attack.isDown){
                 player.shoot();
             }
