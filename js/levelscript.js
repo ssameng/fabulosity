@@ -31,12 +31,11 @@ define(["globals"], function(globals) {
         private.dialogue.punkcount = private.dialogue.buffcount = 0;
         private.dialogue.turntrack = 1;
         public.nextDialogue = function(){
-            console.log("Trying");
-            
             if (private.dialogue.punkcount == private.dialogue.punk.length ||
                 private.dialogue.buffcount == private.dialogue.buff.length)
+                console.log("Can't return dialogue");
                 return;
-            
+
             //return punk
             if (private.dialogue.turntrack == 1){
                 private.dialogue.turntrack = 2;
@@ -47,7 +46,13 @@ define(["globals"], function(globals) {
                 private.dialogue.turntrack = 1;
                 return private.dialogue.buff[private.dialogue.buffcount++];
             }
-        }
+        };
+
+        public.buffEvent = function() {
+            //move player, freeze player, center camera
+            //every shoot becomes a dialogue. callback on enemy collision
+            //callback on player collision too
+        };
 
         return public;
     };

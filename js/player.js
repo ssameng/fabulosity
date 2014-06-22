@@ -69,6 +69,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
         //direction false is left. call this based on cursors input in update
         public.walk = function (direction) {
+            if (!private.walkable) return;
             switch(direction){
                 case globals.direction.stationary:
                     if (private.motor.currentSpeed < 0) {
@@ -88,8 +89,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                         private.motor.currentSpeed = -private.motor.speed;
                     }
                     public.animations.play('walk');
-                    public.scale.x = -private.scalex;
-                    private.direction = globals.direction.left;
+                    //public.scale.x = -private.scalex;
+                    //private.direction = globals.direction.left;
                     break;
                 case globals.direction.right:
                     private.motor.currentSpeed += private.motor.acceleration;
@@ -97,10 +98,11 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                         private.motor.currentSpeed = private.motor.speed;
                     }
                     public.animations.play('walk');
-                    public.scale.x = private.scalex;
-                    private.direction = globals.direction.right;
+                    //public.scale.x = private.scalex;
+                    //private.direction = globals.direction.right;
                     break;
             }
+            public.faceDirection(direction);
             public.body.velocity.x = private.motor.currentSpeed;
         };
 
@@ -123,6 +125,24 @@ define(['globals', 'projectile'], function (globals, Projectile) {
             }
         };
 
+        public.faceDirection = function(direction){
+            switch (direction){
+                case globals.direction.left:
+                    public.scale.x = private.scalex;
+                    private.direction = direction;
+                    break;
+                case globals.direction.right:
+                    public.scale.x = -private.scalex;
+                    private.direction = direction;
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        public.disableWalk = function(bool){
+            private.walkable = bool;
+        };
         return public;
     };
 
