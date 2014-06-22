@@ -9,14 +9,14 @@ define(["globals", 'projectile'],function(globals, Projectile){
         var game = globalGame.phaser;
         var public = game.add.sprite(originX-100, originY-90, 'beefcake');
         var private = {};
-
+        BeefCake.BeefCakeGroup.add(public);
         public.animations.frame = 1;
 
         // rotate & flip around the center of the sprite
         public.anchor.setTo(0.5, 0.5);
         // width, height, translateX, translateY
         game.physics.arcade.enableBody(public);
-        public.body.setSize(152, 160, 0, 0);
+        public.body.setSize(152, 160,0,0);
 
 
         //public.body.gravity.y = globals.GRAVITY;

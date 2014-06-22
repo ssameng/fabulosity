@@ -61,7 +61,7 @@ define([
             });
 
 
-            public.phaser.physics.arcade.overlap(private.beefCake,
+            public.phaser.physics.arcade.overlap(BeefCake.BeefCakeGroup,
                 Player.projectileGroup,
                  function(beefcake, playerBullet) {
                     console.log("rainbow hit");
