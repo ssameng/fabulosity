@@ -45,10 +45,10 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         public.anchor.setTo(0.5, 0.5);
         // width, height, translateX, translateY
         game.phaser.physics.arcade.enableBody(public);
-        public.body.setSize(40, 56, 15, 24);
+        public.body.setSize(40, 75, 15, 24);
         // Use all of the frames for the 'walk' animation
-        public.animations.add('walk', [4], 3, true);
-
+        public.animations.add('walk', [0, 1, 2, 1, 0, 3, 4, 3, 0], 4, true);
+        public.animations.play('walk');
 
         public.body.gravity.y = globals.GRAVITY;
         public.body.bounce.y = 0;
@@ -78,6 +78,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
 
         //direction false is left. call this based on cursors input in update
         public.walk = function (direction) {
+            public.animations.play('walk');
             if (!private.walkable) return;
             switch(direction){
                 case globals.direction.stationary:
@@ -91,15 +92,15 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                         if (private.motor.currentSpeed < 0)
                             private.motor.currentSpeed = 0;
                     }
-                    public.animations.stop();
-                    public.animations.frame = 4;
+                    //public.animations.stop();
+                    //public.animations.frame = 4;
                     break;
                 case globals.direction.left:
                     private.motor.currentSpeed -= private.motor.acceleration;
                     if (private.motor.currentSpeed < -private.motor.speed) {
                         private.motor.currentSpeed = -private.motor.speed;
                     }
-                    public.animations.play('walk');
+
                     //public.scale.x = -private.scalex;
                     //private.direction = globals.direction.left;
                     break;
@@ -108,7 +109,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                     if (private.motor.currentSpeed > private.motor.speed) {
                         private.motor.currentSpeed = private.motor.speed;
                     }
-                    public.animations.play('walk');
+                    //public.animations.play('walk');
                     //public.scale.x = private.scalex;
                     //private.direction = globals.direction.right;
                     break;
@@ -121,9 +122,9 @@ define(['globals', 'projectile'], function (globals, Projectile) {
                 private.walkable = false;
                 public.body.velocity.x = 0;
                 public.faceDirection(globals.direction.right);
-                public.animations.stop();
+                //public.animations.stop();
 
-                public.animations.frame = 4;
+                //public.animations.frame = 4;
 
                 if(endGameTrigger)
                     endGameTrigger();
@@ -134,7 +135,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
     public.lockShoot= function(unlock)
     {
         private.attack.lock = !unlock;
-    }
+    };
 
         public.shoot = function(){
             if (!private.attack.canFire || private.attack.lock) {
@@ -183,7 +184,7 @@ define(['globals', 'projectile'], function (globals, Projectile) {
     Player.preload = function(game) {
         // Load the main player spritesheet
         game.load.spritesheet('playersprite',
-            '/data/img/sprite/mainchar-sheet.png', 64, 80);
+            '/data/img/sprite/mainchar-sheet.png', 64, 90);
 
 
 //        for(var i = 0; i < 2; i++){
