@@ -113,7 +113,7 @@ define(["globals"],function(Globals){
     Enemy.preload = function(game)
     {
         game.load.spritesheet('words', 'data/img/sprite/wordEnemies.png', 128, 128);
-        Globals.randomizer.preload(game, 'squareparticle', '.png', 0, 25, Globals.fileType.image);
+       // Globals.randomizer.preload(game, 'squareparticle', '.png', 0, 25, Globals.fileType.image);
         Enemy.enemyGroup = game.add.group();
 
 
