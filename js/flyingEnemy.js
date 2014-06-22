@@ -17,7 +17,7 @@ define(["globals"],function(Globals){
 
         var game = globalGame.phaser;
         var public = game.add.sprite(originX, originY, 'words');
-        public.animations.frame = Math.floor(Math.random()*4);
+        public.animations.frame = Math.floor(Math.random()*8);
 
         Enemy.enemyGroup.add(public);
         var private = {};
@@ -113,7 +113,7 @@ define(["globals"],function(Globals){
     Enemy.preload = function(game)
     {
         game.load.spritesheet('words', 'data/img/sprite/wordEnemies.png', 128, 128);
-        Globals.randomizer.preload(game, 'squareparticle', '.png', 0, 3, Globals.fileType.image);
+        Globals.randomizer.preload(game, 'squareparticle', '.png', 0, 8, Globals.fileType.image);
         Enemy.enemyGroup = game.add.group();
 
 
