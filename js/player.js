@@ -117,7 +117,7 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
             public.faceDirection(direction);
             public.body.velocity.x = private.motor.currentSpeed;
             game.scanlines.x = public.x - 500;
-            console.log(game.scanlines.x);
+            //console.log(game.scanlines.x);
 
 
             if (public.body.x >= 3083){
