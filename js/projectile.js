@@ -22,7 +22,7 @@ define(["globals"],function(globals) {
                 break;
         }
         var tweenData = 0;
-        game.add.tween(public.scale).to({x: 10.0, y: 1.0}, 2400, Phaser.Easing.Sinusoidal.InOut, true);
+        game.add.tween(public.scale).to({x: 10.0, y: 1.0}, 1000, Phaser.Easing.Sinusoidal.InOut, true);
         //var tween = game.add.tween(tweenData).to(100, 2000, Phaser.Easing.Sinusoidal.InOut);
 
 
