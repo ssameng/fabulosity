@@ -6,6 +6,8 @@ define(["globals", "text"], function(globals, Text) {
         var public = {},
             private = {};
 
+        public.player = player;
+
         private.dialogue = {};
         private.dialogue.shoot = [
             "Nah.",
@@ -34,7 +36,6 @@ define(["globals", "text"], function(globals, Text) {
         };
 
 
-        
 
         private.dialogue.punk = [
             {text: "Hello",                 subtext: "Hello"},
@@ -81,6 +82,8 @@ define(["globals", "text"], function(globals, Text) {
             //callback on player collision too
         };
 
+        public.displayNextBuff = function() {
+        };
 
         public.displayNextMessage = function(originX, originY, color, fadeDirection){
             var testText = Text.new(game, public.getRandomSpeech(), originX, originY,

@@ -134,7 +134,8 @@ define(['globals', 'projectile'], function (globals, Projectile) {
         };
 
         public.update = function(){
-            private.attack.fireRateTimer -= game.phaser.time.physicsElapsed;
+            if (private.attack.fireRateTimer>0)
+                private.attack.fireRateTimer -= game.phaser.time.physicsElapsed;
             if (private.attack.fireRateTimer <= 0){
                 private.attack.canFire = true;
             }

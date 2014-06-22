@@ -37,6 +37,7 @@ define(["globals"], function(globals) {
 
             if (private.printLocation.isDown){
                 console.log(player.body.x + ", " + player.body.y);
+                game.beefcake.shoot();
             }
         };
 

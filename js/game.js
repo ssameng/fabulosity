@@ -79,6 +79,7 @@ define([
             //create beefcake
             //3083 is the trigger
             public.beefcake = BeefCake.new(public, 3352, 296);
+            public.levelscript = LevelScript.new(public, private.player);
 
 private.testText = Text.new(public, 'Test', 100, 0,
                 { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
@@ -96,7 +97,7 @@ private.testText = Text.new(public, 'Test', 100, 0,
 
             public.every(checkEnemyCollisions);
             
-            public.levelscript = LevelScript.new(public, private.player);
+
 
             public.camera.follow(private.player, Phaser.Camera.FOLLOW_PLATFORMER);
         };
