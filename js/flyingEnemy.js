@@ -96,11 +96,15 @@ define(["globals"],function(Globals){
 
         public.update = function()
         {
-            public.body.x-=1;
+            public.body.x-=2;
+
+            if(public.body.x < 0)
+                public.die();
 
 //            if(game.phaser.physics.overlap())
         };
 
+        game.add.tween(public.body).to( { y: originY-300 }, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1200, true);
         return public;
     };
 
