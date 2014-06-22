@@ -2,6 +2,10 @@ define(["globals"],function(Globals){
 
     var Enemy = {};
 
+
+    var hotFlashTween;
+    var hotFlashgraphic;
+
     Enemy.enemyGroup;
 
     Enemy.new = function(globalGame, originX, originY)
@@ -20,7 +24,7 @@ define(["globals"],function(Globals){
 
         public.anchor.setTo(0.5, 0.5);
         game.physics.arcade.enableBody(public);
-        public.body.setSize(40, 56, 15, 24);
+        public.body.setSize(128, 128, 0,0);
 
         private.hitPoints = 1;
 
@@ -38,6 +42,28 @@ define(["globals"],function(Globals){
 //
 //        public.addChild(emitter);
 
+
+
+        function hotFlash()
+        {
+
+
+            if(hotFlashTween){hotFlashTween.stop();}
+            if(hotFlashgraphic)
+                hotFlashgraphic.destroy();
+                hotFlashgraphic = game.add.graphics(0, 0);
+            hotFlashgraphic.beginFill(0xff0000, 1);
+            hotFlashgraphic.drawRect(public.x - game.width, 0, game.width *2, game.height);
+            hotFlashgraphic.alpha = 0;
+            hotFlashgraphic.endFill();
+
+            hotFlashTween =game.add.tween(hotFlashgraphic)
+            hotFlashTween.to({ alpha: 1 }, 1, null)
+            var next = game.add.tween(hotFlashgraphic)
+            next.to({ alpha: 0 }, 800, null)
+            hotFlashTween.chain(next);
+            hotFlashTween.start();
+        }
 
         public.setHitPoints= function(points)
         {
@@ -64,6 +90,7 @@ define(["globals"],function(Globals){
         public.collidedWithPlayer = function()
         {
            // console.log("work!");
+            hotFlash();
             public.die();
         };
 
@@ -77,11 +104,17 @@ define(["globals"],function(Globals){
         return public;
     };
 
+
+
     Enemy.preload = function(game)
     {
         game.load.spritesheet('words', 'data/img/sprite/wordEnemies.png', 128, 128);
         Globals.randomizer.preload(game, 'squareparticle', '.png', 0, 3, Globals.fileType.image);
         Enemy.enemyGroup = game.add.group();
+
+
+
+
 
     };
 

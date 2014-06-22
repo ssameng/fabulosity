@@ -37,9 +37,9 @@ define([
         public.preload = function (game) {
             Scene.preload(public);
             Player.preload(public);
-            FlyingEnemy.preload(public);
             Player.preload(public);
             Projectile.preload(public);
+            FlyingEnemy.preload(public);
         };
         
         
@@ -53,7 +53,7 @@ define([
 
             public.phaser.physics.arcade.overlap(private.player,
                     FlyingEnemy.enemyGroup, function(playa, enemy) {
-                //enemy.collidedWithPlayer();
+                    enemy.collidedWithPlayer();
             });
 
         }
@@ -88,7 +88,7 @@ private.testText = Text.new(public, 'Test', 100, 0,
 
                 FlyingEnemy.new(public
             var enemy = FlyingEnemy.new(public);*/
-            
+
             public.every(checkEnemyCollisions);
             
             public.levelscript = LevelScript.new(public, private.player);
