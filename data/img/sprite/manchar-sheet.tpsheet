@@ -1,0 +1,15 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: mainchar-sheet.png (320 x 80)
+# $TexturePacker:SmartUpdate:702ded2de92edc0690d7198061651154:5676d77f9beb3103d7c0cc61b9bc15fe:0c85d7cadd1adad7b625bff8797dc8e3$
+#
+
+1;0;0;64;80;0.5;0.5
+2;64;0;64;80;0.5;0.5
+3;128;0;64;80;0.5;0.5
+shooting;192;0;64;80;0.5;0.5
+standing;256;0;64;80;0.5;0.5
