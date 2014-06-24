@@ -54,7 +54,7 @@ define(["globals"],function(globals) {
     Projectile.preload = function(game){
         //globals.randomizer.preload(game, 'rainbow', '.png', 0, 12, globals.fileType.image);
         game.load.spritesheet('rainbowflicker',
-            '/data/img/sprite/AllTheRainbows.png', 32, 32);
+            'data/img/sprite/AllTheRainbows.png', 32, 32);
 
     };
 
