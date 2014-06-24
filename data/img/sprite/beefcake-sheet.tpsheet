@@ -1,0 +1,14 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: beefcake-sheet.png (608 x 160)
+# $TexturePacker:SmartUpdate:dd02cbfcf4329164abe40f735c852448:425f7746835d5a973044e8bf3d22912a:bb6e4a9abc3f5697b0931dea36c9b997$
+#
+
+hit;456;0;152;160;0.5;0.5
+knocked-out;304;0;152;160;0.5;0.5
+standing;152;0;152;160;0.5;0.5
+throwing;0;0;152;160;0.5;0.5
