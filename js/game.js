@@ -155,9 +155,9 @@ define([
             // public.phaser.load.audio('fabMusic', 'data/sfx/fabulousity-theme.ogg');
 
             // music = public.phaser.add.audio('fabMusic');
-            // music.play();
+             //music.play();
             
-            //document.getElementById('gameMusic').play();
+            document.getElementById('gameMusic').play();
 
             /***** START SCREEN ******/
            
