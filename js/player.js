@@ -168,7 +168,7 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
                 xoffset = -xoffset;
             }
             tween.to({x: public.body.x + xoffset, y: public.body.y + 5}, 100, Phaser.Easing.Bounce.InOut, true);
-            console.log(public.x + " " +public.x+xoffset);
+            //console.log(public.x + " " +public.x+xoffset);
             
             //game.juicy.shake(10, 100);
             //game.camera.follow(public, Phaser.Camera.FOLLOW_PLATFORMER);
