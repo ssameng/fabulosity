@@ -231,13 +231,13 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
     Player.preload = function(game) {
         // Load the main player spritesheet
         game.load.spritesheet('playersprite',
-            '/data/img/sprite/mainchar-sheet.png', 64, 90);
+            'data/img/sprite/mainchar-sheet.png', 64, 90);
 
 
 //        for(var i = 0; i < 2; i++){
 //            game.load.audio('rainbowelectric'+i, '/data/sfx/rainbowelectric'+i+'.wav');
 //        }
-        game.load.audio('rainbowelectric', '/data/sfx/rainbowelectric0.wav');
+        game.load.audio('rainbowelectric', 'data/sfx/rainbowelectric0.wav');
 
 
         Player.projectileGroup = game.add.group();
