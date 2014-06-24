@@ -10,7 +10,7 @@ define(["globals"],function(Globals){
 
     Enemy.new = function(globalGame, originX, originY)
     {
-
+        
         //default parameters
         originX = originX || 0;
         originY = originY || 0;
@@ -18,6 +18,8 @@ define(["globals"],function(Globals){
         var game = globalGame.phaser;
         var public = game.add.sprite(originX, originY, 'words');
         public.animations.frame = Math.floor(Math.random()*25);
+        public.tint = Math.random() * 0xFFFFFF;
+        public.blendMode = PIXI.blendModes.ADD;
 
         Enemy.enemyGroup.add(public);
         var private = {};
@@ -96,6 +98,7 @@ define(["globals"],function(Globals){
 
         public.update = function()
         {
+            if (game.finalSceneReached) public.die();
             public.body.x-=2;
 
             if(public.body.x < 0)

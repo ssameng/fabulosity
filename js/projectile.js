@@ -15,10 +15,10 @@ define(["globals"],function(globals) {
         damage = damage || 0;
         switch(direction){
             case globals.direction.left:
-                public.body.velocity.x = -700;
+                public.body.velocity.x = -500;
                 break;
             case globals.direction.right:
-                public.body.velocity.x = 700;
+                public.body.velocity.x = 500;
                 break;
         }
         
@@ -26,7 +26,8 @@ define(["globals"],function(globals) {
 
 
         if (spriteName == "rainbowflicker") {
-            public.alpha = 0;
+            //public.blendMode = PIXI.blendModes.ADD;
+            public.alpha = 1;
             game.add.tween(public).to({alpha: 1}, 200, Phaser.Easing.Sinusoidal.InOut, true)
                 .to({alpha: 1}, 1000, Phaser.Easing.Sinusoidal.InOut, true).start();
 
@@ -43,6 +44,7 @@ define(["globals"],function(globals) {
             }
             else if (spriteName == "dumbell"){
                 public.animations.frame = Math.floor(Math.random() * 8);
+                public.body.gravity.y = globals.GRAVITY;
             }
         };
 

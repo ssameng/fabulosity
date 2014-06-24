@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="113" height="15" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="113" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="bedroom-roman" tilewidth="32" tileheight="32">
   <image source="bedroom-roman.png" width="224" height="256"/>
  </tileset>
  <tileset firstgid="57" name="collisions" tilewidth="32" tileheight="32">
   <image source="../img/map/metatiles32x32.png" width="160" height="32"/>
  </tileset>
- <layer name="Background" width="113" height="15">
+ <layer name="Background" width="113" height="20">
   <data encoding="base64" compression="zlib">
-   eJztl8EOgyAMhnva2WyXmZDswMHN93/AYbImP01RhgpGe/gSg4jSr1LoiKgzDMPYEBe4ZdD6O400c96GwDvTsXk+psN/aT2XKzDFeVRi/yxgS/d70Tree+ATczWHcZ4fEe3fuwJncrhFHB4Krb9NMv7gvfZVHPaBVyH9zLi8p/VUdx3AelHqEMfg2iH36Dk1pUbdYX+l9TXXdZfwiG0eYucoXbsdPIv9tP4lc5LnZfTgAdm+5HDpnIb3ndI2KGPcV/o7K7weYz5xvnwozh285nuYkyPFTmQepnLRAfi/Se/mT6e0rsh1p8a7W8fKMNbwBWNQYKU=
+   eJztl8EKgzAQRHPqWdpLhUAPOdj6/x9YhS6My0bTqInoDDyQJEazs2ajcxRFUdRaNYQQsjF+4JZA7fckceZ86wbeiR7T52N6+C+113IFxjj3RuyfGWzp/V7UjvcehMha6eE0z4+I9e1dgTN5uEUcHga1303T/5Cz9lU8bAdembQz88qZNriy+wDWi1wPcQ6pHfqMnlJTStQd8S+3vqZ63UR8xLYAsfMuXrs93IvjrPE5a9L/y+hDAHT7kodL/2nY7422zpjjvtK/syL7MeaT5MvHTXMHr6UPc7J3U090HsZy0QP4vWnf6Z9Nbl3R+06JZ9eOFSFroCiqvr7DP2Cl
   </data>
  </layer>
- <layer name="Furniture" width="113" height="15">
+ <layer name="Furniture" width="113" height="20">
   <data encoding="base64" compression="zlib">
-   eJztls0KgCAQhIUIqmvRz6U/qvd/xIw6SCiubJnhfDBgOs0KuweFAAAAAAAAMZAG5omJ3nKeEDIWqVVqY3pUrzB41RxKFpe35uXJXFsPiwdrgROXeTZRSZUECc03lfYSx0PJiIVaWVef3SJ8Gs/1Fs2e7Q7c/g2O3plZ709Q3g3czKN/3Qt1TAwfyQej1HTbM70bDm+m6P6fjlyT6bt/MRL63AEQAjvk3AuW
+   eJzt1lELgjAQwPFBBNVrUvmSKdb3/4ht5MOQjZ2czsX+PzjQed4Nbg8zBgAAAAAASBwLy6nJM/H9IKgx2njb+Chz/FwTyfXrSGppbXVe1qybmuFlxV74WXKeYxobV0GYwLvUYwpNjqRGLW7ec7PbLsp3z9xvDKyl9qCdX7cwd1D2+yeSe4O2pptfu0GfmG6nyOFlo5+txe4NLvfkxfy/kHOgZu751aj0cwcAgPMF1j8Llg==
   </data>
  </layer>
- <layer name="Lights" width="113" height="15">
+ <layer name="Lights" width="113" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzrEJACAMBEAbN1H3H1ELrUS0U+EOvgj5QEIAAAD4Q7z9AJPUklvKYX90U59Xd7s9AADwrgr/zQFU
+   eJztmTsSgCAMBWm05hDo/Y8ohTbMGJGEj7g7s4UjAXxCFe+c84iIqDbFYg6Jktq3a0jrWeShmd8qR7CD7HWsiSU1d0J9amfPf6xLi7uTe19bORMzflMtep+7P53LEZAyXrrsCCRCdIvumeOvseF8vqt7eg8AAAAAMAKaPsAX+gO9+1eIWO4BZHosqA==
   </data>
  </layer>
- <layer name="collision" width="113" height="15">
+ <layer name="collision" width="113" height="20" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztkkEOgCAMBPutRv//LuNBDo1GkMpSuptMvGBlnaqIKCGEOFIb9D1Jv8OaoLtkxTPoLhnIFPS/Rjl8OxNpD7LuOh3G6nhlkzW7ZnHY42/2vit2svHw18I+plYJ0uEfe2BnjvYXjZbcvfM048u31DzP0B8hZAYOkxb8Uw==
+   eJzt0UEOwCAIRFGuZdr7n8ut3dlAHIH/kr8XxwwA4DWIiILbpX4n+Tfcob6la5HUt3SoG/V/s6Ef/5Rflw0fq3tr1btWnv0y3FvxplXEfn96z5z1UXnD0/tl63bsR0Q3BEBvAt4m920=
   </data>
  </layer>
 </map>

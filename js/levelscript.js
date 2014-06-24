@@ -46,6 +46,7 @@ define(["globals", "text"], function(globals, Text) {
             {text: "Yeah, I love pink.",    subtext: "Yeah, I'm gay."},
             {text: "I like your clothes.",  subtext: "I think your fucking g-string's stupid as shit."} 
         ];
+        
         private.dialogue.buff = [
             {text: "Hey.",                  subtext: "Hey."},
             {text: "Just working out.",     subtext: "Muscles muscules muscles."},

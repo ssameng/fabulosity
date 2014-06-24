@@ -38,11 +38,10 @@ define([
             };
 
         public.preload = function (game) {
-            public.load.image('scanlines', 'data/img/sprite/scanlines.png')
-
+            public.load.image('scanlines', 'data/img/sprite/scanlines.png');
+            globals.randomizer.preload(public, "static", ".jpg", 0, 6, globals.fileType.image);
 
             Scene.preload(public);
-            Player.preload(public);
             Player.preload(public);
             Projectile.preload(public);
             FlyingEnemy.preload(public);
@@ -78,6 +77,7 @@ define([
             public.phaser.physics.arcade.overlap(private.player,
                     FlyingEnemy.enemyGroup, function(playa, enemy) {
                     enemy.collidedWithPlayer();
+                    private.player.onHit();
             });
 
 
@@ -94,16 +94,16 @@ define([
 
                          var text = Text.new(public, dialog,
                              private.player.x, private.player.y + private.player.height/2,
-                             { fadeSpeed: 0.5, fadeOutAfter:2, fadeDir:globals.direction.right, fadeOffset:20, color:'#FFFFFF' });
+                             { fadeSpeed: 1, fadeOutAfter:1, fadeDir:globals.direction.right, fadeOffset:20, color:'#E0E0EB' });
                          public.doAfter(function() {
 
                              var dialog = public.levelscript.nextDialogue();
                              Text.new(public, dialog,
                                  private.beefcake.body.x, private.beefcake.body.y,
-                                 { fadeSpeed: 0.5, fadeOutAfter:3, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
+                                 { fadeSpeed: 1, fadeOutAfter:1, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
                              beefcake.shoot();
 
-                         },3.5);
+                         }, 3.5);
                      //    beefcake.shoot();
                          //delay
 /*
@@ -127,7 +127,7 @@ define([
                         var dialog = public.levelscript.nextDialogue();
                         Text.new(public, dialog,
                             private.beefcake.body.x, private.beefcake.body.y + 100,
-                            { fadeSpeed: 0.5, fadeOutAfter: 3, fadeDir: globals.direction.right, fadeOffset: 20, color: '#FFFFFF' });
+                            { fadeSpeed: 1, fadeOutAfter: 1, fadeDir: globals.direction.right, fadeOffset: 20, color: '#FFFFFF' });
 
                         private.player.lockShoot(true);
                     }
@@ -140,10 +140,14 @@ define([
         public.create = function () 
         {
 
+            public.juicy = public.phaser.plugins.add(new Phaser.Plugin.Juicy(public));
+            
             public.scanlines = public.add.sprite(0, 0, 'scanlines');
             //public.scanlines.scale = {x: 5, y: 5};
             public.scanlines.alpha = .1;
 
+
+            public.static = [];
             // Load the Start Screen BG an buttob
             //public.phaser.load.image('startScreenBG', 'data/img/title-page/title-page.png');
             //public.phaser.load.image('startBTN', 'data/img/title-page/play-btn.png');
@@ -153,7 +157,7 @@ define([
             // music = public.phaser.add.audio('fabMusic');
             // music.play();
             
-            document.getElementById('gameMusic').play();
+            //document.getElementById('gameMusic').play();
 
             /***** START SCREEN ******/
            
@@ -193,6 +197,17 @@ define([
             // Create player
             private.player = Player.new(public, onPlayerReachEnd);
             private.input = InputKeys.new(public, private.player);
+            
+            //hudstatic
+
+            for(var i = 0; i < 7; i++){
+                public.static.push(public.add.sprite(0, 0, 'static'+i));
+                public.static[i].alpha = .1;
+                private.player.addChild(public.static[i]);
+                public.static[i].x -= 400;
+                public.static[i].y -= 400;
+                public.static[i].scale = {x: 2, y: 2};
+            }
 
             //create beefcake
             //3083 is the trigger
@@ -231,7 +246,12 @@ define([
            }
 
         public.update = function () {
+            
+            
 
+            for (var i = 0; i < public.static.length; i++){
+                public.static[i].alpha = Math.random()/50;
+            };
 
             var ncb;
             while (private.nextQueue.length > 0) {
@@ -285,6 +305,22 @@ define([
                 tween.onComplete.add(onComplete);
            // public.camera.setPosition(3083+50,0);
 
+        };
+        
+        public.cameraShake = function(duration, strength, refollow){
+            public.phaser.camera.follow(null);
+            var tween =  public.phaser.add.tween(public.camera);
+            var x = public.camera.x;
+            var y = public.camera.y;
+            tween.to({x:public.camera.x+strength, y:public.camera.y-strength}, duration, Phaser.Easing.Bounce.Out,true);
+            //tween.to({x:public.camera.x+strength, y:public.camera.y+strength}, duration, Phaser.Easing.Bounce.Out,true);
+            tween.to({x:x, y:y}, duration, Phaser.Easing.Bounce.Out,true);
+            if (refollow)
+                tween.onComplete.add(public.cameraFollowPlayer);
+        };
+        
+        public.cameraFollowPlayer = function(){
+            public.camera.follow(private.player, Phaser.Camera.FOLLOW_PLATFORMER);
         };
 
         return public;

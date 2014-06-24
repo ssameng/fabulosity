@@ -9,6 +9,8 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
     Player.new = function (game, endGameTrigger, playerShotTrigger) {
         var public = game.phaser.add.sprite(32*8, 32 * 6, 'playersprite');
         var private = {};
+        
+        //public.tint = "0x000000";
 
         Player.playerGroup.add(public)
 
@@ -116,7 +118,8 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
             }
             public.faceDirection(direction);
             public.body.velocity.x = private.motor.currentSpeed;
-            game.scanlines.x = public.x - 500;
+            game.scanlines.x = public.body.x - 500;
+            
             //console.log(game.scanlines.x);
 
 
@@ -139,15 +142,40 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
     {
         private.attack.lock = !unlock;
     };
+        
+        //flash player sprite on hit
+        public.onHit = function(){
+            
+            console.log(public.tint);
+            var tween =  game.add.tween(public);
+            var tween2 =  game.add.tween(public.body);
+            tween.to({tint: Math.random() * 0xFFFFFF},500, Phaser.Easing.Bounce.InOut,true);
+            tween.to({tint: 0xFFFFFF},500, Phaser.Easing.Bounce.InOut,true);
+            tween2.to({x: public.body.x-50, y: public.body.y + 5}, 300, Phaser.Easing.Bounce.InOut, true);
+
+            game.cameraShake(100, 10, !game.finalSceneReached);
+        }
 
         public.shoot = function(){
             if (!private.attack.canFire || private.attack.lock) {
                 return;
             }
 
+            
+            var tween =  game.add.tween(public.body);
+            var xoffset = 5;
+            if (private.direction == globals.direction.right){
+                xoffset = -xoffset;
+            }
+            tween.to({x: public.body.x + xoffset, y: public.body.y + 5}, 100, Phaser.Easing.Bounce.InOut, true);
+            console.log(public.x + " " +public.x+xoffset);
+            
+            //game.juicy.shake(10, 100);
+            //game.camera.follow(public, Phaser.Camera.FOLLOW_PLATFORMER);
+            
             if(game.finalSceneReached)
             {
-
+                game.cameraShake(100, 10, false);
                 var dialog = game.levelscript.nextDialogue();
                 if(!dialog)
                 {
@@ -159,6 +187,7 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
             }
             else {
                 game.levelscript.displayNextMessage(public.x, public.y - public.height / 2, '#000000', globals.direction.left);
+                game.cameraShake(100, 10, true);
             }
 
             private.sfx.shoot.play();
