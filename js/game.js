@@ -216,7 +216,7 @@ define([
         public.endGame = function(){
             public.staticsheet.alpha = 1;
             public.scanlines.alpha = 1;
-            var text = Text.new(public, 'END',
+            var text = Text.new(public, 'shut up faggot.',
                              public.camera.x + 320, public.camera.y +240,
                              { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
         }
