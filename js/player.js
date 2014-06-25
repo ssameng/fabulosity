@@ -19,9 +19,9 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
         private.motor = {
             speed: 200,
             currentSpeed: 0,
-            acceleration: 20,
+            acceleration: 10,
             direction: globals.direction.right,
-            jumpPower: 75,
+            jumpPower: 50,
             jumpPackFull:.1,
             jumpPack:.1,
             jumped: false
@@ -30,8 +30,8 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
         private.attack = {
             projectileSprite: 'rainbowflicker',
             projectileTrail: 'rainbowTrail',
-            fireRate:.7,
-            fireRateTimer:.7,
+            fireRate:3,
+            fireRateTimer:3,
             canFire: false,
             lock: false
         };
@@ -161,6 +161,7 @@ define(['globals', 'projectile', 'text'], function (globals, Projectile,Text) {
         public.shoot = function(){
             
             if (!private.attack.canFire || private.attack.lock) {
+                game.sfx.noshoot.play();
                 return;
             }
 

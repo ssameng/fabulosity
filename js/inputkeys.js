@@ -14,7 +14,8 @@ define(["globals"], function(globals) {
         private.printLocation = game.phaser.input.keyboard.addKey(Phaser.Keyboard.L);
 
 
-
+        private.shot = false;
+        
         //call this in update to handle game.phaser input
         public.update = function(){
 
@@ -31,8 +32,13 @@ define(["globals"], function(globals) {
             else player.walk(globals.direction.stationary);
 
             //action/shoot and shit
-            if (private.attack.isDown){
+            if (private.attack.isDown && !private.shot){
                 player.shoot();
+                private.shot = true;
+            }
+            
+            if (private.shot && private.attack.isUp){
+                private.shot = false;   
             }
 
             if (private.printLocation.isDown){

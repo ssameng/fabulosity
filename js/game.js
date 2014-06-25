@@ -38,6 +38,8 @@ define([
             };
 
         public.preload = function (game) {
+        
+            
             public.load.image('scanlines', 'data/img/sprite/scanlines.png');
             public.load.spritesheet('staticsheet', 'data/img/sprite/staticsheet.jpg', 640, 480);
             public.load.audio('rainbowelectric', 'data/sfx/rainbowelectric0.wav');
@@ -46,6 +48,7 @@ define([
             public.load.audio('throw', 'data/sfx/throw.wav');
             public.load.audio('hit', 'data/sfx/hit.wav');
             public.load.audio('hit2', 'data/sfx/hit2.wav');
+            public.load.audio('noshoot', 'data/sfx/noshoot.wav');
 
             Scene.preload(public);
             Player.preload(public);
@@ -164,9 +167,9 @@ define([
                 jump: public.add.audio('jump'),
                 throw: public.add.audio('throw'),
                 hit: public.add.audio('hit'),
-                hit2: public.add.audio('hit2')
+                hit2: public.add.audio('hit2'),
+                noshoot:public.add.audio('noshoot')
             };
-            public.juicy = public.phaser.plugins.add(new Phaser.Plugin.Juicy(public));
             
             public.scanlines = public.add.sprite(0, 0, 'scanlines');
             //public.scanlines.scale = {x: 5, y: 5};
@@ -216,7 +219,7 @@ define([
         public.endGame = function(){
             public.staticsheet.alpha = 1;
             public.scanlines.alpha = 1;
-            var text = Text.new(public, 'shut up faggot.',
+            var text = Text.new(public, 'Shut the fuck up fag.',
                              public.camera.x + 320, public.camera.y +240,
                              { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.right, fadeOffset:20, color:'#000000' });
         }
@@ -256,7 +259,7 @@ define([
   //              { fadeSpeed: 2, fadeOutAfter:5, fadeDir:globals.direction.down, fadeOffset:5, color:"#00FF00" });
             private.keepGeneratingEnemies = true;
 
-            public.doAfter(enemyFactory, 3);
+            public.doAfter(enemyFactory, Math.floor(Math.random()*1));
             /*set up generator
              public.doAfter(function(){
                 if(!private.keepGeneratingEnemies)
@@ -311,6 +314,8 @@ define([
                 public,
                 transparent
             );
+            
+            
         };
 
         public.next = function(cb) {

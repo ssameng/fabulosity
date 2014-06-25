@@ -44,7 +44,9 @@ define(["globals", "text"], function(globals, Text) {
             {text: "Nice.",                 subtext: "HahahahahahahhaHAHAHA"},
             {text: "Thanks.",               subtext: "Fuck you."},
             {text: "I love pink.",          subtext: "I'm gay."},
-            {text: "I like your clothes.",  subtext: "You have a fucking gstring"} 
+            {text: "I like your hair.",     subtext: "Your hair's gayer."},
+            {text: "I mean it.",            subtext: "Don't be a pussy."},
+            {text: "Sorry.",                subtext: "Sorry you're a pussy."}
         ];
         
         private.dialogue.buff = [
@@ -55,6 +57,8 @@ define(["globals", "text"], function(globals, Text) {
             {text: "It has a nice color.",  subtext: "Queer ass cunt bitch."},
             {text: "It's nice.",            subtext: "What a faggot."},
             {text: "Thanks.",               subtext: "Fuck you stupid shit."},
+            {text: "I know.",               subtext: "You're a fucker."},
+            {text: "Shut the fuck up",      subtext: "Shut your fag dick."}
         ];
         
         private.dialogue.punkcount = 0;
